@@ -20,10 +20,10 @@ export default function Login() {
         axios.post('http://localhost:4000/login',{email,password})
         .then(result=> {
             console.log(result.data)
-            if(result.data==="Success"){
-                // const accessToken = result?.data?.accessToken;
-                // const roles = result?.data?.roles;
-                // setAuth({email, password,roles,accessToken});
+            if(result.data.auth===true){
+                const accessToken = result?.data?.accessToken;
+                const role = result?.data?.role;
+                setAuth({email, password,role,accessToken});
                 if(loc === "home"){
                     navigate('/home',{state:{id:email}})
                 }
@@ -36,11 +36,8 @@ export default function Login() {
                     navigate('/property',{state:{id:email,cont:cont}})
                 }
             }
-            else if(result.data==="no record"){
-                alert("No record")          
-            }
-            else if(result.data==="the password is incorrect"){
-                alert("The password is incorrect")          
+            else if(result.data.auth===false){
+                alert("Invalid Details")          
             }
         })
         .catch(err=> setErrMsg('Login failed'))

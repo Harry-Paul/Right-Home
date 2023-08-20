@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config;
 const bodyParser = require("body-parser");
 const _ = require("lodash");
 const https = require("https");
@@ -7,18 +8,20 @@ const cors = require("cors");
 const ObjectID = require('mongodb').ObjectId;
 const app = express();
 const jwt = require("jsonwebtoken");
+const errorHandler = require("./middleware/errorHandler");
+
 const fsPromises = require("fs").promises;
 const path = require("path")
-
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors());
+
 
 const mongoose=require("mongoose");
-mongoose.connect("mongodb://localhost:27017/realestate",{useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/righthome",{useNewUrlParser: true});
 
 const newSchema = new mongoose.Schema({
     
@@ -27,6 +30,13 @@ const newSchema = new mongoose.Schema({
         required:true
     },
     password:{
+        type:String,
+        required:true
+    },
+    refreshToken:{
+        type:String
+    },
+    role:{
         type:String,
         required:true
     }
@@ -148,18 +158,33 @@ app.get("/",cors(),(req,res)=>{
 app.post("/login",async(req,res)=>{
     const{email,password}=req.body;
     collection.findOne({email: email})
-    
     .then(user =>{
+        console.log(user)
         if(user && user.password===password){
             if(user.password===password){
-                return res.json("Success")
+                console.log(process.env.ACCESS_TOKEN_SECRET)
+                const accessToken = jwt.sign(
+                    {id: user.email},
+                    `${process.env.ACCESS_TOKEN_SECRET}`,
+                    {expiresIn: "30s"}
+                );
+                const rToken = jwt.sign(
+                    {id: user.email},
+                    `${process.env.REFRESH_TOKEN_SECRET}`,
+                    {expiresIn: "1d"}
+                );
+                run();
+                async function run(){
+                    await user.updateOne({refreshToken:rToken})
+                }
+                return res.json({"auth": true, "token": accessToken});
             }
             else{
-                return res.json("the password is incorrect")
+                return res.json({"auth": false});
             }
         }
         else{
-            return res.json("no record")
+            return res.json({"auth": false});
         }
     })
 })
@@ -176,9 +201,7 @@ app.post("/sellmap",async(req,res)=>{
             console.log("bc");
             res.json("Already exist")
         }
-        
         else{
-            
             console.log(z)
             console.log("sd");
             sellProperties.create(req.body)
@@ -189,7 +212,7 @@ app.post("/sellmap",async(req,res)=>{
 })
 
 app.post("/signup",async(req,res)=>{
-    const{email,password}=req.body;
+    const{email,password,role}=req.body;
     collection.findOne({email: email})
     .then(user =>{
         if(user){
@@ -209,6 +232,8 @@ app.get("/map",function(req,res){
     }
     res.render("map",{m:mapOptions});
 });
+
+app.use(errorHandler);
 
 app.listen(4000,function(){
     console.log("Server is running");
