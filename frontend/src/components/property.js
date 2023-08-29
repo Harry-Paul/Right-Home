@@ -3,6 +3,12 @@ import {MapContainer as PropertyContainer, Marker, Popup, TileLayer,useMapEvents
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 
 
 export default function Property() {
@@ -19,17 +25,21 @@ export default function Property() {
     let cont;
     console.log(location);
 
-    const[lat,setLat]=useState('6');
-    const[lon,setLon]=useState('5');
+    const[lat,setLat]=useState('');
+    const[lon,setLon]=useState('');
     const[area,setArea]=useState('');
     const[price,setPrice]=useState('');
     const[beds,setBeds]=useState('');
     const[baths,setBaths]=useState('');
     const[address,setAddress]=useState('');
     const[description,setDescription]=useState('');
+    const[owner,setOwner]=useState('');
+    const[id,setId]=useState('');
+    const[desc,setDesc]=useState('');
     const[imgArray,setImgArray]=useState([]);
     // const errRef = useRef();
     const [errMsg, setErrMsg] = useState("");
+    const [open, setOpen] = React.useState(false);
     
    
   
@@ -37,7 +47,7 @@ export default function Property() {
     useEffect(() => {
         send(accessToken)
         function send(accessToken){
-            axios.post('http://localhost:4000/property',{identity},
+            axios.post('http://localhost:4000/property',{identity,email},
             {
                 headers: {
                   'Authorization': `Bearer ${accessToken}`
@@ -47,6 +57,8 @@ export default function Property() {
             .then(result => {
                 cont = result.data.cont[0]
                 console.log(cont)
+                setId(cont._id)
+                setOwner(cont.email)
                 setLat(cont.lat)
                 setLon(cont.lon)
                 setArea(cont.area)
@@ -100,12 +112,87 @@ export default function Property() {
           );
       }
 
+    const favourite = () => {
+        const buyer=email;
+        const seller=owner;
+        const property = id;
+        axios.post('http://localhost:4000/favourite',{buyer,seller,property},
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                          },
+                        withCredentials: true
+                    })
+                    .then(result=>{
+                    })
+                    .catch(err=> {
+                        if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                            setAuth({});
+                            navigate('/home')
+                        }
+                    })
+    }
+
+    const interested = () => {
+        setOpen(true)
+    }
+
+    const interestedSubmit = () => {
+        const buyer=email;
+        const seller=owner;
+        const property = id;
+        const description=desc;
+        axios.post('http://localhost:4000/interested',{buyer,seller,property,description},
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`
+                          },
+                        withCredentials: true
+                    })
+                    .then(result=>{
+                        setOpen(false)
+                    })
+                    .catch(err=> {
+                        if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                            setAuth({});
+                            navigate('/home')
+                        }
+                    })
+    }
+
+    const handleClickToOpen = () => {
+        setOpen(true);
+    };
+ 
+    const handleToClose = () => {
+        setOpen(false);
+    };
+
     return (
         <>
         <header>
                 <button onClick={submit2}>home</button>
             </header>
         <div class="main">
+        <Dialog class="dialog-desc" open={open} onClose={handleToClose}>
+                <DialogTitle>Description</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <p>Enter a description</p>
+                        <textarea id="desc" style={{width: 350,height: 200}} autoComplete="off" onChange={(e) => {setDesc(e.target.value)}} placeholder="Description" name=""   />
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleToClose}
+                        color="primary" >
+                        Close
+                    </Button>
+                    <Button onClick={interestedSubmit}
+                        color="primary" >
+                        Submit
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <div class="image-box">
                 <div class="first">
                     <img class="first-image" src={imgArray[0]}/>
@@ -126,7 +213,8 @@ export default function Property() {
             <p>{price}</p>
             <p>{beds}</p>
             <p>{baths}</p>
-            
+            <button onClick={favourite}>favourite</button>
+            <button onClick={interested}>interested</button>
             </div>
         </div>
         <p>{description}</p>

@@ -9,6 +9,11 @@ export default function BuyMap() {
     console.log("abc"+location.state.lat);
     console.log("abc"+location.state.lon);
     const cont=location.state.cont;
+    console.log(cont)
+
+    if(cont[0].date<cont[1].date){
+        console.log("iop")
+    }
 
     const submit2 = () =>{
         navigate("/home")

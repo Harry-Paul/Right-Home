@@ -74,11 +74,11 @@ export default function Home(){
   
 
     const buy=() => {
-      navigate('/buy',{state:{id:email}});
+      navigate('/buy');
     }
 
     const sell=() => {
-      navigate('/sell',{state:{id:email}});
+      navigate('/sell');
     }
 
    
@@ -192,11 +192,9 @@ export default function Home(){
           <div class="props" onClick={submit(marker._id)}>
                 <img id="prop-image" src={marker.images[0]}/>
               <div class="content">
+              <p id="price"> &#8377;{marker.price}</p>
+              <p id="details">{marker.beds} Beds &nbsp;{marker.baths} Baths &nbsp;{marker.area}Sq. Ft</p>
               <p>{marker.address}</p>
-              <p>{marker.area}
-              {marker.price}
-              {marker.beds}
-              {marker.baths}</p>
               </div>
             </div>
        ))}

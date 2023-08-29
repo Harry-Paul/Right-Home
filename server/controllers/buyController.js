@@ -8,7 +8,6 @@ console.log("wqw3q")
 const handleBuy = async (req,res) => {
     const {street,city,state,country}=req.body;
     console.log(state);
-    console.log(req)
     console.log("yui"+req.cookies.jwt)
     let cont=[];
     const url = "https://eu1.locationiq.com/v1/search?key=pk.ac7e701e477a258e0ea7e0ea48fde616&street="+street+"&city="+city+"&state="+state+"&country="+country+"&format=json";

@@ -30,6 +30,7 @@ export default function App() {
           <Route path="unauthorized" element={<Unauthorized/>}/>
           <Route exact path="/*" element={<Error/>}/>
           <Route exact path="error" element={<Error/>}/>
+          
 
           <Route element={<RequireAuth/>}>
             <Route exact path="/home" element={<Home/>}/>

@@ -19,9 +19,9 @@ export default function Root(){
       },[]);
 
   
-    const id="iygy";
+    
     const buy=() => {
-      navigate('/buy',{state:{id:id}});
+      navigate('/buy');
     }
 
     const sell=() => {

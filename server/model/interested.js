@@ -2,27 +2,23 @@ const mongoose=require("mongoose");
 const ObjectID = require('mongodb').ObjectId;
 
 
-const userSchema = new mongoose.Schema({
+const interestedSchema = new mongoose.Schema({
     
-    email:{
+    buyer:{
         type:String,
         required:true
     },
-    password:{
+    seller:{
         type:String,
         required:true
     },
-    refreshToken:{
-        type:String
-    },
-    role:{
+    property:{
         type:String,
         required:true
     },
-    phoneno:{
+    description:{
         type:String,
-        required:true
     }
 })
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Interested', interestedSchema);

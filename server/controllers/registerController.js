@@ -6,7 +6,7 @@ console.log("wqw3q")
 
 const handleSignup = async (req,res) => {
     console.log('adihab')
-    const{email,password,role}=req.body;
+    const{email,password,role,phoneno}=req.body;
     User.findOne({email: email})
     .then(user =>{
         if(user){

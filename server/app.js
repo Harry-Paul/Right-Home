@@ -45,6 +45,10 @@ app.use('/buy', require('./routes/buy'));
 
 app.use('/property', require('./routes/property'));
 
+app.use('/favourite', require('./routes/favourite'));
+
+app.use('/interested', require('./routes/interested'));
+
 app.listen(4000,function(){
     console.log("Server is running");
 });

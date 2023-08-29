@@ -18,7 +18,7 @@ const propSchema = new mongoose.Schema({
         required:true
     },
     price:{
-        type:String,
+        type:Number,
         required:true
     },
     beds:{
@@ -36,6 +36,22 @@ const propSchema = new mongoose.Schema({
     description:{
         type:String,
         required:true
+    },
+    type:{
+        type:String,
+        required:true
+    },
+    status:{
+        type:String,
+        required:true
+    },
+    date:{
+        type:Date,
+        required:true
+    },
+    activity:{
+        type:Number,
+        required:true,
     },
     images:[{
         type:String

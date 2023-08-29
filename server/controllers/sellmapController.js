@@ -21,6 +21,7 @@ const handleSellmap = async (req,res) => {
         else{
             let images=[];
             let i=0;
+            const date = new Date();
             console.log(imgArray.length)
             loop(images);
             function loop(images){
@@ -49,7 +50,10 @@ const handleSellmap = async (req,res) => {
             function upload(images){
                 console.log("sd");
                 console.log(images);
-                Property.create({email,lat,lon,area,price,beds,baths,address,description,images})
+                const type="house";
+                const status="buy"
+                const activity=0
+                Property.create({email,lat,lon,area,price,beds,baths,address,description,type,status,date,activity,images})
                 res.json("Created")
             }
         }

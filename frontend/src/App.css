@@ -50,9 +50,32 @@
     object-fit:cover;
   }
 
-  .content{
-    display: inline-block;
+  .content #price{
+    margin:0;
+    padding:0;
+    font-weight: 650;
+    font-size: 21px;
+    padding-left: 10px;
+    padding-top: 5px;
   }
+
+  .content #details{
+    margin:0;
+    padding:0;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+
+  .content p{
+    padding:0;
+    padding-left: 10px;
+    margin:0;
+    padding-top: 5px;
+    font-size: 14px;
+  }
+
+  
 
 
 
@@ -557,4 +580,91 @@
      margin-left: 10px;
      margin-top: 10px;
     }
+
+    .buy-container{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trending-props-container{
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 50px;
+      padding: 0px;
+    }
+
+    .latest-props-container{
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 50px;
+      padding: 0px;
+    }
+
+    .recommended-props-container{
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 50px;
+      padding: 0px;
+    }
+      
+    .buy-props{
+      width:300px;
+      height:300px;
+      margin-left:18px;
+      margin-right: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      position: static;
+      padding: 10px;
+      object-fit:cover;
+      text-align: left;
+      box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.15);
+      font-family: system-ui;
+      }
+      
+      .buy-props:hover{
+        transform: scale(1.005);
+      }
+    
+    
+      #buy-prop-image{
+        position:static;
+        height:200px;
+        width:300px;
+        padding: 0px;
+        padding-top: 0px;
+        margin:0px;
+        object-fit:cover;
+      }
+    
+      .buy-props .content #price{
+        margin:0;
+        padding:0;
+        font-weight: 600;
+        font-size: 18px;
+        padding-left: 8px;
+        padding-top: 5px;
+      }
+    
+      .buy-props .content #details{
+        margin:0;
+        padding:0;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-top: 5px;
+      }
+    
+      .buy-props .content p{
+        padding:0;
+        padding-left: 10px;
+        margin:0;
+        padding-top: 5px;
+        font-size: 11px;
+      }
+    
+
+    
  
