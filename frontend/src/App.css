@@ -666,5 +666,74 @@
       }
     
 
+    .account-dropdown{
+      color: #dde2f1;
+    }
+
+    .account-props-container{
+      display:flex;
+      flex-wrap: wrap;
+      margin-top: 100px;
+      margin-left: 100px;
+      /* margin-right: 100px; */
+      padding: 0px;
+      }
+    .account-props{
+      display:block;
+      width:400px;
+      height:400px;
+      float:left;
+      margin-left:18px;
+      margin-right: 18px;
+      margin-top: 18px;
+      margin-bottom: 18px;
+      position: static;
+      padding: 0px;
+      object-fit:cover;
+      text-align: left;
+      box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.15);
+      font-family: system-ui;
+      }
+      
+      .account-props:hover{
+        transform: scale(1.005);
+      }
+    
+    
+      #account-prop-image{
+        position:static;
+        height:300px;
+        width:400px;
+        padding: 0px;
+        padding-top: 0px;
+        margin:0px;
+        object-fit:cover;
+      }
+    
+      .content #price{
+        margin:0;
+        padding:0;
+        font-weight: 650;
+        font-size: 21px;
+        padding-left: 10px;
+        padding-top: 5px;
+      }
+    
+      .content #details{
+        margin:0;
+        padding:0;
+        font-size: 17px;
+        padding-left: 10px;
+        padding-top: 5px;
+      }
+    
+      .content p{
+        padding:0;
+        padding-left: 10px;
+        margin:0;
+        padding-top: 5px;
+        font-size: 14px;
+      }
+
     
  

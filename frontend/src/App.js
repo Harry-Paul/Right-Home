@@ -15,6 +15,10 @@ import Property from "./components/property";
 import Error from "./components/error";
 import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
+import Favourite from './components/favourites';
+import Interested from './components/interested';
+import Interests from './components/interests';
+import Ownprop from './components/ownprop';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
@@ -41,6 +45,10 @@ export default function App() {
             <Route exact path="/sellmapown" element={<SellMapOwn/>}/>
             <Route exact path="/buymap" element={<BuyMapContainer/>}/>
             <Route exact path="/property" element={<Property/>}/>
+            <Route exact path="/favourites" element={<Favourite/>}/>
+            <Route exact path="/ownprop" element={<Ownprop/>}/>
+            <Route exact path="/interested" element={<Interested/>}/>
+            <Route exact path="/interests" element={<Interests/>}/>
           </Route>
           
         </Routes>

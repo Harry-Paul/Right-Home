@@ -116,7 +116,9 @@ export default function Property() {
         const buyer=email;
         const seller=owner;
         const property = id;
-        axios.post('http://localhost:4000/favourite',{buyer,seller,property},
+        send(accessToken)
+        function send(accessToken){
+            axios.post('http://localhost:4000/favourite',{buyer,seller,property},
                     {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
@@ -126,11 +128,31 @@ export default function Property() {
                     .then(result=>{
                     })
                     .catch(err=> {
-                        if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
-                            setAuth({});
-                            navigate('/home')
+                        if(err.response.status===403){
+                            axios.post('http://localhost:4000/auth/refresh',{email},
+                            {
+                                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                withCredentials: true
+                            })
+                            .then(result=>{
+                                console.log(result)
+                                const accessToken=result.data.accessToken;
+                                console.log(accessToken)
+                                setAuth({email, password,roles,accessToken})
+                                send(accessToken);
+                                // submit();
+                                // navigate("/home")
+                            })
+                            .catch(err=> {
+                                if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                                    setAuth({});
+                                    navigate('/home')
+                                }
+                            })
                         }
                     })
+        }
+        
     }
 
     const interested = () => {

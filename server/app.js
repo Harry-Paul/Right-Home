@@ -49,6 +49,14 @@ app.use('/favourite', require('./routes/favourite'));
 
 app.use('/interested', require('./routes/interested'));
 
+app.use('/showfav', require('./routes/showfav'));
+
+app.use('/showint', require('./routes/showint'));
+
+app.use('/showintown', require('./routes/showintown'));
+
+app.use('/showownprop', require('./routes/showownprop'));
+
 app.listen(4000,function(){
     console.log("Server is running");
 });

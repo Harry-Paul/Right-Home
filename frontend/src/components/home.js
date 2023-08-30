@@ -93,12 +93,33 @@ export default function Home(){
     const logout=() => {
       console.log("sdf")
       axios.post('http://localhost:4000/auth/logout',{email},
-        {
-          withCredentials:true,
-          headers: {'Access-Control-Allow-Origin': true, 'Content-Type': 'application/json'}
-        })
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+        withCredentials: true
+      }).then(result=>{
+        setAuth({})
+      })
         .catch(err=> console.log(err))
     }
+
+    const favourites =()=>{
+      navigate("/favourites")
+    }
+
+    const properties =()=>{
+      navigate("/ownprop")
+    }
+
+    const interested =()=>{
+      navigate("/interested")
+    }
+
+    const interests =()=>{
+      navigate("/interests")
+    }
+    
 
    const showOptions=()=>{
     console.log("wer")
@@ -119,7 +140,6 @@ export default function Home(){
     setOption("Sold")
     setStyle("ul1")
    }
-
     
  
     return(
@@ -159,8 +179,16 @@ export default function Home(){
               <button href="#">Sell Land</button>
             </div>
           </div>
-          <button id="logout" onClick={logout}>logout</button>
-          {/* <img src={logo}/> */}
+          <div class="account-dropdown">
+                  <div class="default-button" onClick={showOptions}>Account</div>  
+                  <ul class={style}>
+                    <li onClick={favourites}>Favourites</li>
+                    <li onClick={properties}>Your Properties</li>
+                    <li onClick={interested}>Your interests</li>
+                    <li onClick={interests}>interests on owned properties</li>
+                    <li onClick={logout}>Logout</li>
+                  </ul>
+              </div>
         </div>
         </header>
         
