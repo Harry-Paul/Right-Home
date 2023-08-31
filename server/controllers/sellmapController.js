@@ -9,7 +9,7 @@ console.log("wqw3q")
 const handleSellmap = async (req,res) => {
     console.log("abc");
     // console.log(req.body);
-    const{email,lat,lon,area,price,beds,baths,address,description,imgArray}=req.body;
+    const{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray}=req.body;
     // console.log(imgArray)
     Property.findOne({email: email,lat:lat,lon:lon})
     .then(prop =>{
@@ -50,8 +50,6 @@ const handleSellmap = async (req,res) => {
             function upload(images){
                 console.log("sd");
                 console.log(images);
-                const type="house";
-                const status="buy"
                 const activity=0
                 Property.create({email,lat,lon,area,price,beds,baths,address,description,type,status,date,activity,images})
                 res.json("Created")

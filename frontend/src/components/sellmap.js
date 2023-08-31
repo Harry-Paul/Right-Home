@@ -22,6 +22,8 @@ export default function SellMap() {
   const baths=location.state.baths;
   const price=location.state.price;
   const address=location.state.address;
+  const type=location.state.type;
+  const status=location.state.status;
   const description=location.state.description;
   const imgArray = location.state.imgArray;
   console.log(imgArray)
@@ -29,6 +31,7 @@ export default function SellMap() {
   const [position, setPosition] = useState([lat,lon])
   // const errRef = useRef();
   const [errMsg, setErrMsg] = useState("");
+  const[accstyle,setAccstyle]=useState("ul-before");
   const navigate = useNavigate();
 
   const submit= () => {
@@ -40,7 +43,7 @@ export default function SellMap() {
       setLon(position.lng);
       send(accessToken)
       function send(accessToken){
-      axios.post('http://localhost:4000/sellmap',{email,lat,lon,area,price,beds,baths,address,description,imgArray},
+      axios.post('http://localhost:4000/sellmap',{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray},
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`
@@ -76,9 +79,8 @@ export default function SellMap() {
                 })
             }
             else{
-                setErrMsg('Enter valid location')
-                console.log(err.response.status)
-            }
+              navigate("/error")
+          }
         })
       }
   }
@@ -125,10 +127,94 @@ export default function SellMap() {
     navigate("/home")
   }
 
+  const buy=(e,type,status) => {
+    e.preventDefault()
+    navigate('/buy',{state:{type:type,status:status}});
+  }
+
+  const sell=() => {
+    navigate('/sell');
+  }
+
+  const logout=() => {
+    console.log("sdf")
+    axios.post('http://localhost:4000/auth/logout',{email},
+    {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      },
+      withCredentials: true
+    }).then(result=>{
+      setAuth({})
+    })
+      .catch(err=> console.log(err))
+  }
+
+  const favourites =()=>{
+    navigate("/favourites")
+  }
+
+  const properties =()=>{
+    navigate("/ownprop")
+  }
+
+  const interested =()=>{
+    navigate("/interested")
+  }
+
+  const interests =()=>{
+    navigate("/interests")
+  }
+  
+  const showAccountoptions =()=>{
+    if(accstyle==="ul-before"){
+      setAccstyle("ul-after")
+    }
+    else{
+      setAccstyle("ul-before")
+    }
+   }
+
+
   return (
     <div class="sellmap">
       <header>
                 <button onClick={submit2}>home</button>
+                <div class="buttons">
+          <div class="Buy">
+            <button class="Buybtn">BUY<i class="arrow"></i></button>
+            <div class="Buy-content">
+              <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
+              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Rent">
+            <button class="Rentbtn">RENT<i class="arrow"></i></button>
+            <div class="Rent-content">
+              <li onClick={(e)=>buy(e,"house","rent")}>Houses for Rent</li>
+              <li onClick={(e)=>buy(e,"apartment","rent")}>Apartments for Rent</li>
+              <li onClick={(e)=>buy(e,"none","rent")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Sell">
+            <button class="Sellbtn">SELL<i class="arrow"></i></button>
+            <div class="Sell-content">
+              <li onClick={sell}>Sell Property</li>
+              <li onClick={properties}>Your properties</li>
+            </div>
+          </div>
+          <div class="account-dropdown">
+                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <ul class={accstyle}>
+                    <li onClick={favourites}>Favourites</li>
+                    <li onClick={properties}>Your Properties</li>
+                    <li onClick={interested}>Your interests</li>
+                    <li onClick={interests}>Interests on owned properties</li>
+                    <li onClick={logout}>Logout</li>
+                  </ul>
+              </div>
+        </div>
             </header>
     <SellMapContainer
       center={[lat, lon]}

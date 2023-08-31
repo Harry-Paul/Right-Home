@@ -48,36 +48,32 @@ export default function Root(){
     return(
         <abc>
             <div class="head">
-              <div class="buttons">
-                <div class="Find">
-                  <button class="Findbtn">Find <i class="arrow"></i></button>
-                  <div class="Find-content">
-                    <button onClick={buy}>Houses for sale</button>
-                    <button href="#">Apartments for sale</button>
-                    <button href="#">Houses for rent</button>
-                    <button href="#">Apartments for rent</button>
-                    <button href="#">Land for sale</button>
-                    <button href="#">All Listings</button>
-                  </div>
-                </div>
-                <div class="Sell">
-                  <button class="Sellbtn">Sell<i class="arrow"></i></button>
-                  <div class="Sell-content">
-                    <button onClick={sell}>Sell House</button>
-                    <button href="#">Sell Apartment</button>
-                    <button href="#">Rent House</button>
-                    <button href="#">Rent Apartment </button>
-                    <button href="#">Sell Land</button>
-                  </div>
-                </div>
-                <button id="login" onClick={Login}>Login</button>
-                <button id="Signup" onClick={Signup}>Signup</button>
-                <button id="a" onClick={Logout}>logout</button>
-              </div>
-              <div class="search-button">
-                <input class="search" type="search" name="password" placeholder=" Enter keywords" ></input>
-                <img src="search2.png" alt="dsfj" height="10px" ></img>
-              </div>
+            <div class="buttons">
+          <div class="Buy">
+            <button class="Buybtn">BUY<i class="arrow"></i></button>
+            <div class="Buy-content">
+              <li onClick={buy}>Houses for sale</li>
+              <li href="#">Apartments for sale</li>
+              <li href="#">All Listings</li>
+            </div>
+          </div>
+          <div class="Rent">
+            <button class="Rentbtn">RENT<i class="arrow"></i></button>
+            <div class="Rent-content">
+              <li onClick={buy}>Houses for Rent</li>
+              <li href="#">Apartments for Rent</li>
+              <li href="#">All Listings</li>
+            </div>
+          </div>
+          <div class="Sell">
+            <button class="Sellbtn">SELL<i class="arrow"></i></button>
+            <div class="Sell-content">
+              <li onClick={sell}>Sell Property</li>
+              <li href="#">Your properties</li>
+            </div>
+          </div>
+          <button onClick={Login}>login</button>
+        </div>
             </div>
 
             

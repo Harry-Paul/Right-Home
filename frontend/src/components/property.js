@@ -40,8 +40,10 @@ export default function Property() {
     // const errRef = useRef();
     const [errMsg, setErrMsg] = useState("");
     const [open, setOpen] = React.useState(false);
+    const[accstyle,setAccstyle]=useState("ul-before");
     
    
+    
   
 
     useEffect(() => {
@@ -93,8 +95,7 @@ export default function Property() {
                     })
                 }
                 else{
-                    setErrMsg('Enter valid location')
-                    console.log(err.response.status)
+                    navigate("/error")
                 }
             })
         }
@@ -112,7 +113,7 @@ export default function Property() {
           );
       }
 
-    const favourite = () => {
+    const favouriteButton = () => {
         const buyer=email;
         const seller=owner;
         const property = id;
@@ -150,12 +151,15 @@ export default function Property() {
                                 }
                             })
                         }
+                        else{
+                            navigate("/error")
+                        }
                     })
         }
         
     }
 
-    const interested = () => {
+    const interestedButton = () => {
         setOpen(true)
     }
 
@@ -164,7 +168,9 @@ export default function Property() {
         const seller=owner;
         const property = id;
         const description=desc;
-        axios.post('http://localhost:4000/interested',{buyer,seller,property,description},
+        send(accessToken)
+        function send(accessToken){
+            axios.post('http://localhost:4000/interested',{buyer,seller,property,description},
                     {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
@@ -175,11 +181,34 @@ export default function Property() {
                         setOpen(false)
                     })
                     .catch(err=> {
-                        if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
-                            setAuth({});
-                            navigate('/home')
+                        if(err.response.status===403){
+                            axios.post('http://localhost:4000/auth/refresh',{email},
+                            {
+                                headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                                withCredentials: true
+                            })
+                            .then(result=>{
+                                console.log(result)
+                                const accessToken=result.data.accessToken;
+                                console.log(accessToken)
+                                setAuth({email, password,roles,accessToken})
+                                send(accessToken);
+                                // submit();
+                                // navigate("/home")
+                            })
+                            .catch(err=> {
+                                if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                                    setAuth({});
+                                    navigate('/home')
+                                }
+                            })
+                        }
+                        else{
+                            navigate("/error")
                         }
                     })
+        }
+        
     }
 
     const handleClickToOpen = () => {
@@ -190,10 +219,94 @@ export default function Property() {
         setOpen(false);
     };
 
+    const buy=(e,type,status) => {
+        e.preventDefault()
+        navigate('/buy',{state:{type:type,status:status}});
+      }
+  
+      const sell=() => {
+        navigate('/sell');
+      }
+  
+      const logout=() => {
+        console.log("sdf")
+        axios.post('http://localhost:4000/auth/logout',{email},
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          },
+          withCredentials: true
+        }).then(result=>{
+          setAuth({})
+        })
+          .catch(err=> console.log(err))
+      }
+  
+      const favourites =()=>{
+        navigate("/favourites")
+      }
+  
+      const properties =()=>{
+        navigate("/ownprop")
+      }
+  
+      const interested =()=>{
+        navigate("/interested")
+      }
+  
+      const interests =()=>{
+        navigate("/interests")
+      }
+      
+      const showAccountoptions =()=>{
+        if(accstyle==="ul-before"){
+          setAccstyle("ul-after")
+        }
+        else{
+          setAccstyle("ul-before")
+        }
+       }
+
     return (
         <>
         <header>
+                
+                <div class="buttons">
                 <button onClick={submit2}>home</button>
+          <div class="Buy">
+            <button class="Buybtn">BUY<i class="arrow"></i></button>
+            <div class="Buy-content">
+              <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
+              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Rent">
+            <button class="Rentbtn">RENT<i class="arrow"></i></button>
+            <div class="Rent-content">
+              <li onClick={(e)=>buy(e,"house","rent")}>Houses for Rent</li>
+              <li onClick={(e)=>buy(e,"apartment","rent")}>Apartments for Rent</li>
+              <li onClick={(e)=>buy(e,"none","rent")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Sell">
+            <button class="Sellbtn">SELL<i class="arrow"></i></button>
+            <div class="Sell-content">
+              <li onClick={sell}>Sell Property</li>
+              <li onClick={properties}>Your properties</li>
+            </div>
+          </div>
+          <div class="account-dropdown">
+                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <ul class={accstyle}>
+                    <li onClick={favourites}>Favourites</li>
+                    <li onClick={properties}>Your Properties</li>
+                    <li onClick={interested}>Your interests</li>
+                    <li onClick={interests}>Interests on owned properties</li>
+                    <li onClick={logout}>Logout</li>
+                  </ul>
+              </div>
+        </div>
             </header>
         <div class="main">
         <Dialog class="dialog-desc" open={open} onClose={handleToClose}>
@@ -235,8 +348,8 @@ export default function Property() {
             <p>{price}</p>
             <p>{beds}</p>
             <p>{baths}</p>
-            <button onClick={favourite}>favourite</button>
-            <button onClick={interested}>interested</button>
+            <button onClick={favouriteButton}>favourite</button>
+            <button onClick={interestedButton}>interested</button>
             </div>
         </div>
         <p>{description}</p>

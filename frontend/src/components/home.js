@@ -21,6 +21,7 @@ export default function Home(){
     var cont;
     const[option,setOption]=useState("Buy");
     const[style,setStyle]=useState("ul1");
+    const[accstyle,setAccstyle]=useState("ul-before");
 
       useLayoutEffect(() => {
         send(accessToken);
@@ -63,24 +64,15 @@ export default function Home(){
                 })
             }
             else{
-                setErrMsg('Enter valid location')
-                console.log(err.response.status)
-            }
+              navigate("/error")
+          }
+            
           })
         }
         
       },[]);
 
   
-
-    const buy=() => {
-      navigate('/buy');
-    }
-
-    const sell=() => {
-      navigate('/sell');
-    }
-
    
     const submit=(i) => {
       return () => {
@@ -89,6 +81,15 @@ export default function Home(){
         navigate("/property",{state:{id:identity}})
       }
     };
+
+    const buy=(e,type,status) => {
+      e.preventDefault()
+      navigate('/buy',{state:{type:type,status:status}});
+    }
+
+    const sell=() => {
+      navigate('/sell');
+    }
 
     const logout=() => {
       console.log("sdf")
@@ -120,9 +121,16 @@ export default function Home(){
       navigate("/interests")
     }
     
+    const showAccountoptions =()=>{
+      if(accstyle==="ul-before"){
+        setAccstyle("ul-after")
+      }
+      else{
+        setAccstyle("ul-before")
+      }
+     }
 
    const showOptions=()=>{
-    console.log("wer")
     setStyle("ul2")
    }
 
@@ -148,44 +156,35 @@ export default function Home(){
         <header>
         <div class="buttons">
           <div class="Buy">
-            <button class="Buybtn">Buy <i class="arrow"></i></button>
+            <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
-              <button onClick={buy}>Houses for sale</button>
-              <button href="#">Apartments for sale</button>
-              <button href="#">Houses for rent</button>
-              <button href="#">Apartments for rent</button>
-              <button href="#">Land for sale</button>
-              <button href="#">All Listings</button>
+              <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
+              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
           <div class="Rent">
-            <button class="Rentbtn">Buy <i class="arrow"></i></button>
+            <button class="Rentbtn">RENT<i class="arrow"></i></button>
             <div class="Rent-content">
-              <button onClick={buy}>Houses for sale</button>
-              <button href="#">Apartments for sale</button>
-              <button href="#">Houses for rent</button>
-              <button href="#">Apartments for rent</button>
-              <button href="#">Land for sale</button>
-              <button href="#">All Listings</button>
+              <li onClick={(e)=>buy(e,"house","rent")}>Houses for Rent</li>
+              <li onClick={(e)=>buy(e,"apartment","rent")}>Apartments for Rent</li>
+              <li onClick={(e)=>buy(e,"none","rent")}>All Listings</li>
             </div>
           </div>
           <div class="Sell">
-            <button class="Sellbtn">Sell<i class="arrow"></i></button>
+            <button class="Sellbtn">SELL<i class="arrow"></i></button>
             <div class="Sell-content">
-              <button onClick={sell}>Sell House</button>
-              <button href="#">Sell Apartment</button>
-              <button href="#">Rent House</button>
-              <button href="#">Rent Apartment </button>
-              <button href="#">Sell Land</button>
+              <li onClick={sell}>Sell Property</li>
+              <li onClick={properties}>Your properties</li>
             </div>
           </div>
           <div class="account-dropdown">
-                  <div class="default-button" onClick={showOptions}>Account</div>  
-                  <ul class={style}>
+                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
                     <li onClick={interested}>Your interests</li>
-                    <li onClick={interests}>interests on owned properties</li>
+                    <li onClick={interests}>Interests on owned properties</li>
                     <li onClick={logout}>Logout</li>
                   </ul>
               </div>

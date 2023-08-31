@@ -11,10 +11,15 @@ export default function Favourite(){
     const { auth } = useAuth();
     const { setAuth } = useAuth();
     const email=auth?.email;
+    const password=auth?.password;
+    const roles=auth?.roles;
     const accessToken=auth?.accessToken;
+    const[accstyle,setAccstyle]=useState("ul-before");
 
       useEffect(() => {
-        axios.post('http://localhost:4000/showfav',{email},
+        send(accessToken)
+        function send(accessToken){
+          axios.post('http://localhost:4000/showfav',{email},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`
@@ -26,7 +31,36 @@ export default function Favourite(){
             setProps(result.data.cont);
             console.log(cont);
         })
-        .catch(err=> console.log(err))
+        .catch(err=> {
+          console.log(err)
+          if(err.response.data.message==="Forbidden"){
+              axios.post('http://localhost:4000/auth/refresh',{email},
+              {
+                  headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                  withCredentials: true
+              })
+              .then(result=>{
+                  console.log(result)
+                  const accessToken=result.data.accessToken;
+                  setAuth({email, password,roles,accessToken})
+                  console.log(accessToken)
+                  send(accessToken);
+                  // submit();
+                  // navigate("/home")
+              })
+              .catch(err=> {
+                if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                    setAuth({});
+                     navigate('/ownprop')
+                  }
+              })
+          }
+          else{
+            navigate("/error")
+        }
+        })
+        }
+        
       },[]);
 
 
@@ -41,13 +75,97 @@ export default function Favourite(){
           navigate("/property",{state:{id:identity}})
         }
       };
+
+      const buy=(e,type,status) => {
+        e.preventDefault()
+        navigate('/buy',{state:{type:type,status:status}});
+      }
+  
+      const sell=() => {
+        navigate('/sell');
+      }
+  
+      const logout=() => {
+        console.log("sdf")
+        axios.post('http://localhost:4000/auth/logout',{email},
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          },
+          withCredentials: true
+        }).then(result=>{
+          setAuth({})
+        })
+          .catch(err=> console.log(err))
+      }
+  
+      const favourites =()=>{
+        navigate("/favourites")
+      }
+  
+      const properties =()=>{
+        navigate("/ownprop")
+      }
+  
+      const interested =()=>{
+        navigate("/interested")
+      }
+  
+      const interests =()=>{
+        navigate("/interests")
+      }
+      
+      const showAccountoptions =()=>{
+        if(accstyle==="ul-before"){
+          setAccstyle("ul-after")
+        }
+        else{
+          setAccstyle("ul-before")
+        }
+       }
     
 
     return(
         <abc>
             <header>
                 <button onClick={home}>Home</button>
+                <div class="buttons">
+          <div class="Buy">
+            <button class="Buybtn">BUY<i class="arrow"></i></button>
+            <div class="Buy-content">
+              <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
+              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Rent">
+            <button class="Rentbtn">RENT<i class="arrow"></i></button>
+            <div class="Rent-content">
+              <li onClick={(e)=>buy(e,"house","rent")}>Houses for Rent</li>
+              <li onClick={(e)=>buy(e,"apartment","rent")}>Apartments for Rent</li>
+              <li onClick={(e)=>buy(e,"none","rent")}>All Listings</li>
+            </div>
+          </div>
+          <div class="Sell">
+            <button class="Sellbtn">SELL<i class="arrow"></i></button>
+            <div class="Sell-content">
+              <li onClick={sell}>Sell Property</li>
+              <li onClick={properties}>Your properties</li>
+            </div>
+          </div>
+          <div class="account-dropdown">
+                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <ul class={accstyle}>
+                    <li onClick={favourites}>Favourites</li>
+                    <li onClick={properties}>Your Properties</li>
+                    <li onClick={interested}>Your interests</li>
+                    <li onClick={interests}>Interests on owned properties</li>
+                    <li onClick={logout}>Logout</li>
+                  </ul>
+              </div>
+        </div>
             </header>
+            <h1 style={{marginLeft:118}}>Your favourites</h1>
             <div class="account-props-container">
             {props?.map((marker) => (
                 <div class="account-props" onClick={submit(marker.prop._id)}>

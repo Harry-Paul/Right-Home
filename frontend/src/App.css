@@ -1,6 +1,7 @@
 .leaflet-container{
   width:1330px;
   height: 80vh;
+  z-index: 0;
 }
 
 /* body{
@@ -38,7 +39,6 @@
   .props:hover{
     transform: scale(1.005);
   }
-
 
   #prop-image{
     position:static;
@@ -91,6 +91,7 @@
 
   .head header{
     opacity: 0.6;
+    float:left
   }
 
   header{
@@ -98,42 +99,54 @@
     height: 80px;
     background-color: black;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    
+  }
+
+  .buttons{
+    height:100%;
+    float:left;
   }
 
   .Buybtn {
     background-color: transparent;
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 25px;
     border: none;
     text-align: justify;
     padding-left: 15px;
     padding-right: 15px;
+    opacity: 1;
   }
   
   .Buy{
-    position: relative;
+    /* position: relative;
     display: inline-block;
     margin-left: 100px;
-    padding-top: 10px;
+    padding-top: 10px; */
+    float:left;
+    margin-left:200px;
+    opacity: 1;
+    margin-top: 17px;
   }
   
   .Buy-content {
+    z-index: 10;
     display: none;
     position: absolute;
-    background-color: #313131;
-    color: rgb(22, 164, 6);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     min-width: 85px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
   
-  .Buy-content button {
-    color: rgb(22, 164, 6);
+  .Buy-content li {
+    color: rgb(0, 0, 0);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-size: 16px;
+    font-size: 18px;
   }
-  .Buy-content button:hover {background-color:rgb(255, 255, 255); ;color: #000000;cursor: pointer;}
+  .Buy-content li:hover {background-color:rgb(0, 0, 0); ;color: #ffffff;cursor: pointer;}
   .Buy:hover .Buy-content {display: block;}
   .Buy:hover .Buybtn {
     color: rgb(255, 255, 255);
@@ -142,38 +155,44 @@
 
   .Rentbtn {
     background-color: transparent;
-    color: rgb(22, 164, 6);
-    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
     border: none;
     text-align: justify;
     padding-left: 15px;
     padding-right: 15px;
+    opacity: 1;
   }
   
   .Rent{
-    position: relative;
+    /* position: relative;
     display: inline-block;
     margin-left: 100px;
-    padding-top: 10px;
+    padding-top: 10px; */
+    float: left;
+    margin-left: 50px;
+    opacity: 1;
+    margin-top: 17px;
   }
   
   .Rent-content {
     display: none;
     position: absolute;
-    background-color: #313131;
-    color: rgb(22, 164, 6);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     min-width: 85px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index:10;
   }
   
-  .Rent-content button {
-    color: rgb(22, 164, 6);
+  .Rent-content li {
+    color: rgb(0, 0, 0);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-size: 16px;
+    font-size: 18px;
   }
-  .Rent-content button:hover {background-color:rgb(255, 255, 255); ;color: #000000;cursor: pointer;}
+  .Rent-content li:hover {background-color:rgb(0, 0, 0); ;color: #ffffff;cursor: pointer;}
   .Rent:hover .Rent-content {display: block;}
   .Rent:hover .Rentbtn {
     color: rgb(255, 255, 255);
@@ -182,43 +201,225 @@
 
   .Sellbtn {
     background-color: transparent;
-    color: rgb(22, 164, 6);
-    font-size: 16px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
     border: none;
     text-align: justify;
     padding-left: 15px;
     padding-right: 15px;
+    opacity: 1;
   }
   
   .Sell{
-    position: relative;
+    /* position: relative;
     display: inline-block;
     margin-left: 100px;
-    padding-top: 10px;
+    padding-top: 10px; */
+    float:left;
+    margin-left: 50px;
+    opacity: 1;
+    margin-top: 17px;
   }
 
   .Sell-content {
     display: none;
     position: absolute;
-    background-color: #313131;
-    color: rgb(22, 164, 6);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     min-width: 85px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index:10;
   }
   
-  .Sell-content button {
-    color: rgb(22, 164, 6);
+  .Sell-content li {
+    color: rgb(0, 0, 0);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  .Sell-content button:hover {background-color:rgb(255, 255, 255); ;color: #000000;cursor: pointer;}
+  .Sell-content li:hover {background-color:rgb(0, 0, 0); ;color: #ffffff;cursor: pointer;}
   .Sell:hover .Sell-content {display: block;}
   .Sell:hover .Sellbtn {
     color: rgb(255, 255, 255);
     cursor: pointer;
+  }
+
+  .account-dropdown{
+    color: white;
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 550px;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+
+  .account-button{
+    margin-left: 300px;
+  }
+
+  .ul-before{
+    background-color: white;
+    margin-left: 150px;
+    display:none;
+    width:100px;
+  }
+
+  .ul-after{
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    opacity: 1;
+    margin-left: 180px;
+    display: block;
+    font-size: 20px;
+    list-style-type: none;
+    padding: 0;
+    font-weight: 30px;
+    width:200px;
+  }
+
+  .ul-after li{
+    font-weight: 30px;
+    padding:10px;
+  }
+
+  .ul-after li:hover{
+    background-color: black;
+    color: white;
+    padding: 10px;
+  }
+
+  .wrapper{
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%,-50%);
+  }
+  
+  .wrapper .search_box{
+    width: 550px;
+    background: #fff;
+    border-radius: 5px;
+    height: 65px;
+    display: flex;
+    padding: 10px;
+    box-shadow: 0 8px 6px -10px #b3c6ff;
+  }
+  
+  .wrapper .search_box .dropdown{
+    width: 100px;
+    border-right: 2px solid #dde2f1;
+    color: #9fa3b1;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .wrapper .search_box .dropdown .default_option{
+    text-transform: uppercase;
+    padding: 13px 15px;
+    font-size: 21px;
+    margin-top: 1px;
+  }
+  
+  .wrapper .search_box .dropdown .ul1{
+    position: absolute;
+    top: 70px;
+    left: -10px;
+    background: #fff;
+    width: 100px;
+    border-radius: 5px;
+    padding: 20px;
+    display: none;
+    box-shadow: 8px 8px 6px -10px #b3c6ff;
+    list-style-type: none;
+  }
+
+  .wrapper .search_box .dropdown .ul2{
+    position: absolute;
+    top: 70px;
+    left: -10px;
+    background: #fff;
+    width: 100px;
+    border-radius: 5px;
+    padding: 20px;
+    display:block;
+    box-shadow: 8px 8px 6px -10px #b3c6ff;
+    list-style-type: none;
+  }
+  
+  
+  
+  .wrapper .search_box .dropdown ul li{
+    padding-bottom: 20px;
+    padding-left: 15px;
+    font-size: 21px;
+  }
+  
+  .wrapper .search_box .dropdown ul li:last-child{
+    padding-bottom: 0;
+  }
+  
+  .wrapper .search_box .dropdown ul li:hover{
+    color: #6f768d;
+  }
+  
+  .wrapper .search_box .dropdown:before{
+    content: "";
+    position: absolute;
+    margin-top: 8px;
+    margin-left: px;
+    top: 18px;
+    right: 12px;
+    border: 8px solid;
+    border-color: #5078ef transparent transparent transparent;
+  }
+  
+  .wrapper .search_box .search_field{
+    width: 350px;
+    height: 100%;
+    position: relative;
+    border: 5px;
+  }
+  
+  .wrapper .search_box .search_field .input{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #6f768d;
+  }
+  
+  .wrapper .search_box .search_field .fas{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    color: #5078ef;
+    cursor: pointer;
+  }
+
+  .wrapper .search_box .search-logo{
+    margin-left: 50px;
+    width:60px;
+    border-radius: 5px;
+    background-color: #e7e7e7;
+  }
+
+  .wrapper .search_box .search-logo:hover{
+    background-color: #cacaca;
+  }
+
+  .wrapper .search_box img{
+    position:relative;
+    width: 40px;
+    height: 40px;
+   margin-left: 10px;
+   margin-top: 10px;
   }
 
   .main{
@@ -257,7 +458,7 @@
   .image-box .other-images{
     width:437px;
     object-fit: cover;
-    height: 400px;
+    height: 350px;
     margin-right: 2px;
     margin-left: 2px;
   }
@@ -325,7 +526,7 @@
     .map-in-props{
       display:block;
       width:150px;
-      height:100px;
+      height:120px;
       padding: 0px;
       }
       
@@ -344,8 +545,13 @@
         object-fit:cover;
       }
   
-      .map-in-content{
-        height:90px;
+      .map-in-content h3{
+        padding: 0;
+        font-size: 10px;
+      }
+
+      .map-in-content p{
+        padding: 0;
         font-size: 10px;
       }
 
@@ -450,147 +656,21 @@
         cursor: pointer;
     }
 
-
-    .wrapper{
-      position: absolute;
-      top: 40%;
-      left: 48%;
-      transform: translate(-50%,-50%);
-    }
-    
-    .wrapper .search_box{
-      width: 550px;
-      background: #fff;
-      border-radius: 5px;
-      height: 65px;
-      display: flex;
-      padding: 10px;
-      box-shadow: 0 8px 6px -10px #b3c6ff;
-    }
-    
-    .wrapper .search_box .dropdown{
-      width: 100px;
-      border-right: 2px solid #dde2f1;
-      color: #9fa3b1;
-      position: relative;
-      cursor: pointer;
-    }
-    
-    .wrapper .search_box .dropdown .default_option{
-      text-transform: uppercase;
-      padding: 13px 15px;
-      font-size: 21px;
-      margin-top: 1px;
-    }
-    
-    .wrapper .search_box .dropdown .ul1{
-      position: absolute;
-      top: 70px;
-      left: -10px;
-      background: #fff;
-      width: 100px;
-      border-radius: 5px;
-      padding: 20px;
-      display: none;
-      box-shadow: 8px 8px 6px -10px #b3c6ff;
-      list-style-type: none;
-    }
-
-    .wrapper .search_box .dropdown .ul2{
-      position: absolute;
-      top: 70px;
-      left: -10px;
-      background: #fff;
-      width: 100px;
-      border-radius: 5px;
-      padding: 20px;
-      display:block;
-      box-shadow: 8px 8px 6px -10px #b3c6ff;
-      list-style-type: none;
-    }
-    
-    
-    
-    .wrapper .search_box .dropdown ul li{
-      padding-bottom: 20px;
-      padding-left: 15px;
-      font-size: 21px;
-    }
-    
-    .wrapper .search_box .dropdown ul li:last-child{
-      padding-bottom: 0;
-    }
-    
-    .wrapper .search_box .dropdown ul li:hover{
-      color: #6f768d;
-    }
-    
-    .wrapper .search_box .dropdown:before{
-      content: "";
-      position: absolute;
-      margin-top: 8px;
-      margin-left: px;
-      top: 18px;
-      right: 12px;
-      border: 8px solid;
-      border-color: #5078ef transparent transparent transparent;
-    }
-    
-    .wrapper .search_box .search_field{
-      width: 350px;
-      height: 100%;
-      position: relative;
-      border: 5px;
-    }
-    
-    .wrapper .search_box .search_field .input{
-      width: 100%;
-      height: 100%;
-      border: 0px;
-      font-size: 16px;
-      padding-left: 20px;
-      padding-right: 20px;
-      color: #6f768d;
-    }
-    
-    .wrapper .search_box .search_field .fas{
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 22px;
-      color: #5078ef;
-      cursor: pointer;
-    }
-
-    .wrapper .search_box .search-logo{
-      margin-left: 50px;
-      width:60px;
-      border-radius: 5px;
-      background-color: #e7e7e7;
-    }
-
-    .wrapper .search_box .search-logo:hover{
-      background-color: #cacaca;
-    }
-
-    .wrapper .search_box img{
-      position:relative;
-      width: 40px;
-      height: 40px;
-     margin-left: 10px;
-     margin-top: 10px;
+    .buy-form{
+      margin-left:100px;
     }
 
     .buy-container{
       display: flex;
       flex-direction: column;
+      padding: 0;
     }
 
     .trending-props-container{
       display:flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 50px;
+      margin-top: 0px;
       padding: 0px;
     }
 
@@ -598,7 +678,7 @@
       display:flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 50px;
+      margin-top: 0px;
       padding: 0px;
     }
 
@@ -606,7 +686,7 @@
       display:flex;
       flex-direction: row;
       justify-content: center;
-      margin-top: 50px;
+      margin-top: 0px;
       padding: 0px;
     }
       
@@ -618,7 +698,7 @@
       margin-top: 10px;
       margin-bottom: 10px;
       position: static;
-      padding: 10px;
+      padding: 0px;
       object-fit:cover;
       text-align: left;
       box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.15);
@@ -664,16 +744,12 @@
         padding-top: 5px;
         font-size: 11px;
       }
-    
-
-    .account-dropdown{
-      color: #dde2f1;
-    }
+  
 
     .account-props-container{
       display:flex;
       flex-wrap: wrap;
-      margin-top: 100px;
+      margin-top: 10px;
       margin-left: 100px;
       /* margin-right: 100px; */
       padding: 0px;
@@ -709,6 +785,46 @@
         margin:0px;
         object-fit:cover;
       }
+
+      .interests-props-container{
+        display:flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        margin-left: 100px;
+        /* margin-right: 100px; */
+        padding: 0px;
+        }
+      .interests-props{
+        display:block;
+        width:400px;
+        height:480px;
+        float:left;
+        margin-left:18px;
+        margin-right: 18px;
+        margin-top: 18px;
+        margin-bottom: 18px;
+        position: static;
+        padding: 0px;
+        object-fit:cover;
+        text-align: left;
+        box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.15);
+        font-family: system-ui;
+        }
+        
+        .interests-props:hover{
+          transform: scale(1.005);
+        }
+      
+      
+        #interests-prop-image{
+          position:static;
+          height:300px;
+          width:400px;
+          padding: 0px;
+          padding-top: 0px;
+          margin:0px;
+          object-fit:cover;
+        }
     
       .content #price{
         margin:0;
@@ -733,6 +849,79 @@
         margin:0;
         padding-top: 5px;
         font-size: 14px;
+      }
+
+      .sell-form{
+        float:left;
+        text-align: center;
+        margin-left: 250px;
+        margin-right: 200px;
+      }
+
+      .sell-form .form-group{
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .sell-form label{
+        padding-right: 20px;
+      }
+
+      .sell-form .type-form{
+        float:left;
+      }
+
+      .sell-form .status-form{
+        float:left;
+      }
+
+      .form-dropdown{
+        margin-left: 140px;;
+      }
+
+      .form-dropdown-default{
+        cursor:pointer;
+        background-color: rgb(181, 181, 181);
+      }
+
+      .form-dropdown-default:hover{
+        background-color: rgb(223, 223, 223);
+      }
+
+      .form-ul-before{
+        display:none;
+      }
+
+      .form-ul-after{
+        list-style-type:none;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        background-color: #e8e8e8;
+      }
+
+      .form-ul-after li:hover{
+        background-color: #cdcdcd;
+      }
+
+      .image-form{
+        height:545px;
+      }
+
+      .img-container{
+        padding-top: 20px;
+        padding-right: 20px;
+      }
+
+      .img-container img{
+        object-fit: cover;
+        padding: 10px;
+        height:100px;
+        width:150px;
+      }
+      
+      .sell-submit{
+        margin-left:950px;
       }
 
     

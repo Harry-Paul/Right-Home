@@ -9,7 +9,6 @@ const handleBuy = async (req,res) => {
     const {street,city,state,country}=req.body;
     console.log(state);
     console.log("yui"+req.cookies.jwt)
-    let cont=[];
     const url = "https://eu1.locationiq.com/v1/search?key=pk.ac7e701e477a258e0ea7e0ea48fde616&street="+street+"&city="+city+"&state="+state+"&country="+country+"&format=json";
     // const url1 = "https://nominatim.openstreetmap.org/search.php?q="+q+"&street="+street+"&city="+city+"&state="+state+"&country="+country+"&postalcode="+postalcode+"&format=geojson";
     // const url2 = "https://nominatim.openstreetmap.org/search.php?&street="+street+"&city="+city+"&state="+state+"&country="+country+"&postalcode="+postalcode+"&format=geojson";
@@ -27,9 +26,7 @@ const handleBuy = async (req,res) => {
                 long = locData[0].lon;
                 run().catch(error => console.log(error.stack));
                 async function run(){
-                    cont=await Property.find();
-                    console.log(cont);
-                    console.log(lat+" "+long);
+                    const cont=await Property.find();
                     const msg="Success"
                     res.json({"message":msg,"lat":lat,"lon":long,"cont":cont})
                 }
