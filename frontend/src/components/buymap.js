@@ -3,6 +3,7 @@ import {MapContainer as BuyMapContainer, Marker, Popup, TileLayer,useMapEvents} 
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 export default function BuyMap() {
     const location=useLocation();
@@ -106,9 +107,12 @@ export default function BuyMap() {
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
-          <button onClick={submit2}>home</button>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
+          </div>
+          
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -121,10 +125,10 @@ export default function BuyMap() {
         </header>
             <div class="buy-map">
                 <BuyMapContainer style={{width:'100%',height:'100%'}} center={[location.state.lat,location.state.lon]} zoom={15} >
-                    <TileLayer
-                    attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-                    />
+                <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
                     {cont?.map((marker) => (
                         <Marker
                         position ={[
@@ -148,12 +152,10 @@ export default function BuyMap() {
                     {cont?.map((marker) => (
                         <div class="map-props" onClick={submit(marker._id)}>
                                 <img id="map-prop-image" src={marker.images[0]}/>
-                            <div class="map-content">
+                                <div class="content">
+                            <p id="price"> &#8377;{marker.price}</p>
+                            <p id="details">{marker.beds} Beds &nbsp;{marker.baths} Baths &nbsp;{marker.area}Sq. Ft</p>
                             <p>{marker.address}</p>
-                            <p>{marker.area}
-                            {marker.price}
-                            {marker.beds}
-                            {marker.baths}</p>
                             </div>
                         </div>
                     ))}

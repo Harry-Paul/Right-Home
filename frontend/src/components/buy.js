@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef,useLayoutEffect} from "react";
 import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 export default function Sell(){
     const location=useLocation();
@@ -260,9 +261,11 @@ export default function Sell(){
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
-          <button onClick={submit2}>home</button>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -287,7 +290,7 @@ export default function Sell(){
                 <button type="submit">Find</button>
             </form>
             <div class="buy-container">
-            <h1 style={{ marginLeft:80}}>Trending</h1>
+            <h1 style={{ marginLeft:100}}>TRENDING</h1>
                 <div class="trending-props-container">
                     
                     {tstate && trending?.slice(0,4)?.map((marker) => (
@@ -301,7 +304,7 @@ export default function Sell(){
                         </div>
                     ))}
                 </div>
-                <h1 style={{ marginLeft:80}}>Latest</h1>
+                <h1 style={{ marginLeft:100}}>LATEST</h1>
                 <div class="latest-props-container">
                     
                     {lstate && latest?.slice(0,4)?.map((marker) => (
@@ -315,7 +318,7 @@ export default function Sell(){
                         </div>
                     ))}
                 </div>
-                <h1 style={{ marginLeft:80}}>Recommended</h1>
+                <h1 style={{ marginLeft:100}}>RECOMMENDED</h1>
                 <div class="recommended-props-container">
                     
                     {props.slice(0,4)?.map((marker) => (

@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef} from "react";
 import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 export default function Sell() {
     const location=useLocation();
@@ -248,7 +249,7 @@ export default function Sell() {
     return (
          <>
          <header>
-                <button onClick={submit2}>home</button>
+                
                 <div class="buttons">
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
@@ -273,8 +274,11 @@ export default function Sell() {
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -352,7 +356,7 @@ export default function Sell() {
                 </div>
                 
                 <div class="image-form">
-                <h1 className="title">Upload an Image</h1>
+                <h1 className="title">Upload Images</h1>
                 <input
                     id="fileInput"
                     type="file"
@@ -373,8 +377,8 @@ export default function Sell() {
             
             </div>
             <div class="sell-submit">
-                <button type="submit">Submit</button>
-                <button onClick={submit1}>Use your own location</button>
+                <button id="b" type="submit">Find Location Manually</button>
+                <button id="b" style={{marginLeft:20}} onClick={submit1}>Use Your Current location</button>
             </div>
             </form>
             

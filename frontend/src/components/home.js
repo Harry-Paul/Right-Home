@@ -4,6 +4,7 @@ import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
 import logo from "./search2.png"
+import accountLogo from "./user_3177440.png"
 
 export default function Home(){
     const navigate = useNavigate()
@@ -178,8 +179,8 @@ export default function Home(){
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
-          <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+          <div class="home-account-dropdown">
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>

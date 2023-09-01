@@ -1,5 +1,5 @@
 .leaflet-container{
-  width:1330px;
+  width:100%;
   height: 80vh;
   z-index: 0;
 }
@@ -75,30 +75,34 @@
     font-size: 14px;
   }
 
-  
-
-
+  .root-head{
+    width:100%;
+    height:707px;
+    background-image: url("C:\Users\harry\Downloads\lycs-architecture-kUdbEEMcRwE-unsplash (2).jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
   .head{
     /* text-align: center; */
     /* background-color: black; */
     width:100%;
-    height:550px;
+    height:450px;
     background-image: url("C:\Users\harry\Downloads\lycs-architecture-kUdbEEMcRwE-unsplash (2).jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
 
   .head header{
-    opacity: 0.6;
+    opacity: 0.77;
     float:left
   }
 
   header{
     width: 100%;
     height: 80px;
-    background-color: black;
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    background-color: rgb(0, 0, 0);
+    box-shadow: 4px 5px 9px 6px rgba(0, 0, 0, 0.2);
     
   }
 
@@ -246,7 +250,7 @@
     cursor: pointer;
   }
 
-  .account-dropdown{
+  .home-account-dropdown{
     color: white;
     position: relative;
     display: inline-block;
@@ -256,8 +260,23 @@
     cursor: pointer;
   }
 
+  .account-dropdown{
+    color: white;
+    position: relative;
+    display: inline-block;
+    font-size: 15px;
+    margin-left: 400px;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+
   .account-button{
-    margin-left: 300px;
+    margin-left: 335px;
+  }
+
+  #acc-img{
+    margin-top: 8px;
+    width:40px;
   }
 
   .ul-before{
@@ -279,6 +298,7 @@
     padding: 0;
     font-weight: 30px;
     width:200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
 
   .ul-after li{
@@ -295,7 +315,7 @@
   .wrapper{
     position: absolute;
     top: 40%;
-    left: 48%;
+    left: 50%;
     transform: translate(-50%,-50%);
   }
   
@@ -425,8 +445,8 @@
   .main{
     margin-left:100px;
     margin-right:100px;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    /* margin-bottom: 100px; */
   }
 
   .image-box{
@@ -434,7 +454,7 @@
     height:500px;
     overflow-y:auto;
     float:left;
-    margin-bottom:100px;
+    /* margin-bottom:100px; */
     margin-right:20px;
   }
 
@@ -467,9 +487,16 @@
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 100px;
-    margin-top: 250px;
+    margin-top: 80px;
     
     /* height:80vh; */
+  }
+
+  #b{
+    color: black;
+    background-color: white;
+    border:none;
+    box-shadow: 1px 1px 15px -3px #000000;
   }
 
   .buy-map{
@@ -553,6 +580,10 @@
       .map-in-content p{
         padding: 0;
         font-size: 10px;
+      }
+
+      #map-prop-image{
+        object-fit: cover;
       }
 
 
@@ -668,25 +699,31 @@
 
     .trending-props-container{
       display:flex;
+      flex-wrap:wrap;
       flex-direction: row;
-      justify-content: center;
+      /* justify-content: center; */
       margin-top: 0px;
+      margin-left: 85px;
       padding: 0px;
     }
 
     .latest-props-container{
       display:flex;
+      flex-wrap: wrap;
       flex-direction: row;
-      justify-content: center;
+      /* justify-content: center; */
       margin-top: 0px;
+      margin-left: 85px;
       padding: 0px;
     }
 
     .recommended-props-container{
       display:flex;
+      flex-wrap: wrap;
       flex-direction: row;
-      justify-content: center;
+      /* justify-content: center; */
       margin-top: 0px;
+      margin-left: 85px;
       padding: 0px;
     }
       

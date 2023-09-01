@@ -5,6 +5,7 @@ import L from "leaflet";
 import axios from 'axios';
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 
 export default function SellMap() {
@@ -179,7 +180,7 @@ export default function SellMap() {
   return (
     <div class="sellmap">
       <header>
-                <button onClick={submit2}>home</button>
+               
                 <div class="buttons">
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
@@ -204,8 +205,11 @@ export default function SellMap() {
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -227,8 +231,10 @@ export default function SellMap() {
       />
       <DraggableMarker/>
     </SellMapContainer>
-    <Button onClick={submit}>Confirm</Button>
-    <Button onClick={cancel}>Cancel</Button>
+    <div class="map-buttons" style={{marginLeft:560}}>
+    <Button style={{fontSize:40,padding:0,margin:0}} onClick={submit}>Confirm</Button>
+    <Button style={{fontSize:40,padding:0,paddingLeft:30}} onClick={cancel}>Cancel</Button>
+    </div>
     </div>
   );
 }

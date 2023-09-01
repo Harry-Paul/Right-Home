@@ -3,6 +3,7 @@ import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 export default function Interests(){
     const navigate = useNavigate()
@@ -127,7 +128,7 @@ export default function Interests(){
     return(
         <abc>
             <header>
-                <button onClick={home}>Home</button>
+               
                 <div class="buttons">
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
@@ -152,8 +153,11 @@ export default function Interests(){
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={home} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -164,7 +168,7 @@ export default function Interests(){
               </div>
         </div>
             </header>
-            <h1 style={{marginLeft:118}}>Interests on Owned Properties</h1>
+            <h1 style={{marginLeft:118}}>INTERESTS ON OWNED PROPERTIES</h1>
             <div class="interests-props-container">
             {props?.map((marker) => (
                 <div class="interests-props" onClick={submit(marker.prop._id)}>

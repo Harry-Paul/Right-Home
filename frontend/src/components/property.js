@@ -9,6 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
+import accountLogo from "./user_3177440.png"
 
 
 export default function Property() {
@@ -66,7 +67,7 @@ export default function Property() {
                 setArea(cont.area)
                 setPrice(cont.price)
                 setBeds(cont.beds)
-                setBaths(cont.Baths)
+                setBaths(cont.baths)
                 setAddress(cont.address)
                 setDescription(cont.description)
                 setImgArray(cont.images)
@@ -108,7 +109,7 @@ export default function Property() {
       const showMyLocation = () => {
           mapRef.current.flyTo(
             [lat, lon],
-            12,
+            15,
             {animate: true}
           );
       }
@@ -272,7 +273,7 @@ export default function Property() {
         <header>
                 
                 <div class="buttons">
-                <button onClick={submit2}>home</button>
+                
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
@@ -296,8 +297,11 @@ export default function Property() {
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -342,24 +346,25 @@ export default function Property() {
                 </div>
             ))}
             </div>
-            <div class="content">
-            <p>{address}</p>
-            <p>{area}</p>
-            <p>{price}</p>
-            <p>{beds}</p>
-            <p>{baths}</p>
-            <button onClick={favouriteButton}>favourite</button>
-            <button onClick={interestedButton}>interested</button>
+            <div style={{marginLeft:950,marginBottom:0}} class="content">
+            <h1> &#8377;{price}</h1>
+            <p style={{fontSize:20,marginRight:0,marginBottom:30}}>{area} Sq. Ft &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+            {beds} Beds&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            {baths} Baths</p>
+            <p style={{fontSize:30,marginBottom:30}}>{address}</p>
+            <p style={{fontSize:20,marginBottom:40}}>{description}</p>
+            <button id="b" style={{marginLeft:30,fontSize:30}} onClick={favouriteButton}>Favourite</button>
+            <button id="b" style={{marginLeft:30,fontSize:30}} onClick={interestedButton}>Interested</button>
             </div>
         </div>
-        <p>{description}</p>
+        
         <div class="map">
-            <button onClick={showMyLocation}>Find The location</button>
+            <button id="b" style={{marginLeft:530,fontSize:30,marginBottom:20}} onClick={showMyLocation}>Find The location</button>
             <PropertyContainer center={[1,15]} zoom={5} ref={mapRef}>
             <TileLayer
-                    attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                    url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-                    />
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
                 <Marker
                     position ={[
                         lat,

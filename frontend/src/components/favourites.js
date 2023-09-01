@@ -3,6 +3,7 @@ import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 export default function Favourite(){
     const navigate = useNavigate()
@@ -128,7 +129,7 @@ export default function Favourite(){
     return(
         <abc>
             <header>
-                <button onClick={home}>Home</button>
+              
                 <div class="buttons">
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
@@ -153,8 +154,11 @@ export default function Favourite(){
               <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={home} class="Sellbtn">HOME</button>
+          </div>
           <div class="account-dropdown">
-                  <div class="account-button" onClick={showAccountoptions}>Account</div>  
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
                   <ul class={accstyle}>
                     <li onClick={favourites}>Favourites</li>
                     <li onClick={properties}>Your Properties</li>
@@ -165,7 +169,7 @@ export default function Favourite(){
               </div>
         </div>
             </header>
-            <h1 style={{marginLeft:118}}>Your favourites</h1>
+            <h1 style={{marginLeft:118}}>FAVOURITES</h1>
             <div class="account-props-container">
             {props?.map((marker) => (
                 <div class="account-props" onClick={submit(marker.prop._id)}>

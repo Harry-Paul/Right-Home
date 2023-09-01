@@ -11,6 +11,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
+import accountLogo from "./user_3177440.png"
 
 
 
@@ -175,32 +176,44 @@ export default function SellMapOwn() {
   return (
     <div class="SellMapOwn">
       <header>
-                <button onClick={submit2}>home</button>
-                <div class="buttons">
+      <div class="buttons">
           <div class="Buy">
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
-              <li onClick={buy}>Houses for sale</li>
-              <li href="#">Apartments for sale</li>
-              <li href="#">All Listings</li>
+              <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
+              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
           <div class="Rent">
             <button class="Rentbtn">RENT<i class="arrow"></i></button>
             <div class="Rent-content">
-              <li onClick={buy}>Houses for Rent</li>
-              <li href="#">Apartments for Rent</li>
-              <li href="#">All Listings</li>
+              <li onClick={(e)=>buy(e,"house","rent")}>Houses for Rent</li>
+              <li onClick={(e)=>buy(e,"apartment","rent")}>Apartments for Rent</li>
+              <li onClick={(e)=>buy(e,"none","rent")}>All Listings</li>
             </div>
           </div>
           <div class="Sell">
             <button class="Sellbtn">SELL<i class="arrow"></i></button>
             <div class="Sell-content">
               <li onClick={sell}>Sell Property</li>
-              <li href="#">Your properties</li>
+              <li onClick={properties}>Your properties</li>
             </div>
           </div>
+          <div class="Sell">
+            <button onClick={submit2} class="Sellbtn">HOME</button>
           </div>
+          <div class="account-dropdown">
+                  <div class="account-button" onClick={showAccountoptions}><img id="acc-img" src={accountLogo}/></div>  
+                  <ul class={accstyle}>
+                    <li onClick={favourites}>Favourites</li>
+                    <li onClick={properties}>Your Properties</li>
+                    <li onClick={interested}>Your interests</li>
+                    <li onClick={interests}>Interests on owned properties</li>
+                    <li onClick={logout}>Logout</li>
+                  </ul>
+              </div>
+        </div>
             </header>
     <SellMapOwnContainer
       center={[49.1951, 16.6068]}
@@ -234,8 +247,10 @@ export default function SellMapOwn() {
               <Marker position={[loc.coordinates.lat, loc.coordinates.lon]}></Marker>
             )}
     </SellMapOwnContainer>
-    <Button onClick={submit}>Confirm</Button>
-    <Button onClick={cancel}>Cancel</Button>
+    <div class="map-buttons" style={{marginLeft:560}}>
+    <Button style={{fontSize:40,padding:0,margin:0}} onClick={submit}>Confirm</Button>
+    <Button style={{fontSize:40,padding:0,paddingLeft:30}} onClick={cancel}>Cancel</Button>
+    </div>
     </div>
   );
 }
