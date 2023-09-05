@@ -1,6 +1,9 @@
 # Logs
-package.json
-package-lock.json
+server/package.json
+server/package-lock.json
+
+frontend/package.json
+frontend/package-lock.json
 
 logs
 *.log
