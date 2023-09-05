@@ -43,11 +43,11 @@ export default function Root(){
   
     
     const buy=() => {
-      navigate('/buy');
+      navigate('/login',{state:{type:"none",status:"none",to:"buy"}});
     }
 
-    const sell=() => {
-      navigate('/sell');
+    const sell=()=>{
+      navigate("/login",{state:{to:"sell"}})
     }
 
     const Login=() => {
@@ -57,22 +57,20 @@ export default function Root(){
       navigate('/Signup');
     }
 
-    const Logout=() => {
-      axios.post('http://localhost:4000/auth/logout')
-    }
-
-    const submit=() => {
-      navigate('/home')
-    }
 
     
  
     return(
         <abc>
             <div class="root-head">
-            
-          <button onClick={Login}>LOGIN</button>
+            <div class="root-buttons">
+            <button onClick={Login}>LOGIN</button>
           <button onClick={Signup}>SIGNUP</button>
+            </div>
+          <div class="root-cont">
+            <div class="root-buy" onClick={buy}><h3>BUY</h3><p>Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p></div>
+            <div class="root-sell" onClick={sell}><h3>SELL</h3><p>No matter what path you take to sell your home, we can help you navigate a successful sale.</p></div>
+          </div>
         </div>
 
             

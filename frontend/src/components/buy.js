@@ -68,7 +68,7 @@ export default function Sell(){
         })
         .catch(err=> {
             if(err.response.data.message==="Forbidden"){
-                setAuth({});
+                
                 axios.post('http://localhost:4000/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
@@ -85,7 +85,8 @@ export default function Sell(){
                 })
                 .catch(err=> {
                     if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
-                        navigate('/buy')
+                      setAuth({});
+                        navigate('/home')
                     }
                 })
             }else{
@@ -119,6 +120,7 @@ export default function Sell(){
             withCredentials: true
           })
           .then(result => {
+            console.log(result)
               setProps(result.data.buyCont)
               console.log("lkj")
               console.log(props)
@@ -166,7 +168,7 @@ export default function Sell(){
 
       const buy=(e,type,status) => {
         e.preventDefault()
-        navigate('/buy',{state:{type:type,status:status}});
+        navigate('/home',{state:{type:type,status:status}});
       }
   
       const sell=() => {
@@ -242,7 +244,7 @@ export default function Sell(){
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
@@ -286,8 +288,8 @@ export default function Sell(){
                 <input type="text" onChange={(e) => {setCity(e.target.value)}} placeholder="City" name="City" id="" />
                 <input type="text" onChange={(e) => {setState(e.target.value)}} placeholder="State" name="State" id="" />
                 <input type="text" onChange={(e) => {setCountry(e.target.value)}} placeholder="Country" name="Country" id="" />
-                <input type="text" onChange={(e) => {setRange(e.target.value)}} placeholder="Max distance from location" name="Range" id="" />
-                <button type="submit">Find</button>
+                <input type="text" onChange={(e) => {setRange(e.target.value)}} placeholder="Max distance from location" name="Range" id="" required/>
+                <button id="b" type="submit">Find</button>
             </form>
             <div class="buy-container">
             <h1 style={{ marginLeft:100}}>TRENDING</h1>

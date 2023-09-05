@@ -26,6 +26,9 @@ export default function Home(){
     const[address,setAddress]=useState("");
 
       useLayoutEffect(() => {
+        if(location.state?.type){
+          navigate("/buy",{state:location.state})
+        }
         send(accessToken);
         function send(accessToken){
           axios.post('http://localhost:4000/home',{email},
@@ -221,19 +224,16 @@ export default function Home(){
    }
 
    const buyOption=()=>{
-    setOption("Buy")
+    setOption("buy")
     setStyle("ul1")
    }
 
    const rentOption=()=>{
-    setOption("Rent")
+    setOption("rent")
     setStyle("ul1")
    }
 
-   const soldOption=()=>{
-    setOption("Sold")
-    setStyle("ul1")
-   }
+   
     
  
     return(
@@ -245,7 +245,7 @@ export default function Home(){
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>

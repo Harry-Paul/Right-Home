@@ -32,18 +32,17 @@ export default function Login() {
                 const accessToken = result?.data?.token;
                 const roles = result?.data?.role;
                 setAuth({email, password,roles,accessToken});
-                // if(loc === "home"){
-                //     // navigate('/home',{state:{id:email}})
-                // }
-                // else if(loc === "sell"){
-                //     // navigate('/sell',{state:{id:email}})
-                // }
-                // else if(loc === "property"){
-                //     // const id = location.state.id;
-                //     // const cont = location.state.cont;
-                //     // navigate('/property',{state:{id:email,cont:cont}})
-                // }
-                navigate(from, {replace: true})
+                console.log("ert")
+                if(location?.state?.to==="buy"){
+                    navigate("/buy",{state:location.state})
+                    console.log("jkl")
+                }
+                else if(location?.state?.to==="sell"){
+                    navigate("/sell")
+                }
+                else{
+                    navigate("/home")
+                }
             }
             else if(result.data.auth===false){
                 alert("Invalid Details")          
@@ -54,47 +53,21 @@ export default function Login() {
   
 
     return (
-         <div class="login">
-            {/* <p ref={errRef} className={errMsg? "errmsg" :
-            "offscreen"} aria-live="assertive">{errMsg}</p>
-            <form onSubmit={submit}>
-                <input type="text" ref={userRef} autoComplete="off" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="" id="email" value={email} required/>
-                <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="" id="password" value={password} required />
-                <button type="submit">submit</button>
-            </form>
-            <br></br>
+         <div class="signup"><br></br><br></br><br></br>
+            <div class="signup-card">
+            <form onSubmit={submit} >
+                <div class="input-group">
+                <h2>SIGN IN</h2>
+                <label for="email">EMAIL</label>
+                <input type="text" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="email" id="" />
+                <label for="passowrd">PASSWORD</label>
+                <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
+                <button type="submit">Submit</button>
+                </div>
+            </form><br></br>
             <p>OR</p>
-            <Link to="/signup">To signup</Link> */}
-
-            <form onSubmit={submit}>
-        <div class="align">
-        <table>
-            <tr>
-                <td class="d">Sign In<br></br></td>
-            </tr>
-            <tr>
-                <td class="a"><input type="text" ref={userRef} autoComplete="off" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="" id="email" value={email} required/><br></br></td>
-            </tr>
-            <tr>
-                <td class="a"><input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="" id="password" value={password} required /><br/><br/></td>
-            </tr>
-            <tr>
-                <td class="b"><button type="submit" class="signin">submit</button></td>
-            </tr>
-           
-            <tr><td> </td></tr><tr></tr>
-            <tr>
-                <Link to="/signup"><td><span class="f">New to Right Home?</span> <span id="signup">Sign up now</span></td></Link>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr class="h">
-                <td class="u">This page is protected by Google reCAPTCHA to<br></br> ensure you're not a bot. <span id="p"></span>Learn more.</td>
-            </tr>
-        </table>
-        </div>
-    </form>
+            <Link to="/signup">To Sign-up</Link>
+            </div>
          </div>
 
          

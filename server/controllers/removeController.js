@@ -17,19 +17,8 @@ const handleRemove = async (req,res) => {
         const obj = new ObjectID(property);
         const cont=await Property.find({ _id : obj});
         console.log("jkl"+cont[0])
-        const fav=await Favourite.find({prop:cont[0]})
-        console.log("ojk"+fav)
-        if(fav){
-            const favobj=fav._id.valueOf()
-            const fobj = new ObjectID(favobj);
-            await Favourite.deleteOne({_id:fobj})
-        }
-        const int=await Interested.find({prop:cont[0]})
-        if(int){
-            const intobj=int._id.valueOf()
-            const iobj = new ObjectID(intobj);
-            await Interested.deleteOne({_id:iobj})
-        }
+        await Favourite.deleteMany({prop:cont[0]})
+        await Interested.deleteMany({prop:cont[0]})
         await Property.deleteOne({_id:obj})
     }
 }

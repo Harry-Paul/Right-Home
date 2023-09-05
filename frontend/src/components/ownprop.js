@@ -181,7 +181,7 @@ export default function Ownprop(){
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
@@ -218,16 +218,18 @@ export default function Ownprop(){
             <h1 style={{marginLeft:118}}>OWNED PROPERTIES</h1>
             <div class="account-props-container">
             {props?.map((marker) => (
-                <div class="own-props" onClick={submit(marker._id)}>
+              <div class="acc-props">
+                <div class="account-props" onClick={submit(marker._id)}>
                         <img id="account-prop-image" src={marker.images[0]}/>
                     <div class="content">
                     <p id="price"> &#8377;{marker.price}</p>
                     <p id="details">{marker.beds} Beds &nbsp;{marker.baths} Baths &nbsp;{marker.area}Sq. Ft</p>
                     <p>{marker.address}</p>
-                    <button style={{marginLeft:100, fontSize:20, marginTop:7}} id="b">Sold</button>
-                    <button style={{marginLeft:20, fontSize:20, marginTop:7}} id="b" onClick={remove(marker._id)}>Remove</button>
                     </div>
                     </div>
+                    <br/>
+                    <button style={{marginLeft:27 , fontSize:20,}} id="b" onClick={remove(marker._id)}>Remove</button>
+              </div>
             ))}
             </div>
         </abc>

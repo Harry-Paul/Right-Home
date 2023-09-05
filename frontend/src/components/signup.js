@@ -23,16 +23,24 @@ export default function Signup() {
     }
 
     return (
-         <div class="signup">
+         <div class="signup"><br></br><br></br><br></br>
+            <div class="signup-card">
             <form onSubmit={submit} >
+                <div class="input-group">
+                <h2>SIGN UP</h2>
+                <label for="email">EMAIL</label>
                 <input type="text" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="email" id="" />
-                <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
+                <label for="phoneno">PHONE NO</label>
                 <input type="text" onChange={(e) => {setPhoneno(e.target.value)}} placeholder="phone no" name="phone" id="" />
+                <label for="passowrd">PASSWORD</label>
+                <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
                 <button type="submit">Submit</button>
+                </div>
             </form>
-            <br></br>
             <p>OR</p>
             <Link to="/login">To login</Link>
+            </div>
+            
          </div>
     )
     

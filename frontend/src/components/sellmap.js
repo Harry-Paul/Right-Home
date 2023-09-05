@@ -65,7 +65,7 @@ export default function SellMap() {
           .catch(err=> {
            
             if(err.response.data.message==="Forbidden"){
-                setAuth({});
+                
                 axios.post('http://localhost:4000/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
@@ -82,6 +82,7 @@ export default function SellMap() {
                 })
                 .catch(err=> {
                   if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                    setAuth({});
                         navigate('/sell')
                     }
                 })
@@ -215,7 +216,7 @@ export default function SellMap() {
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>

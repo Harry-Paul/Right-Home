@@ -120,8 +120,9 @@ export default function Sell() {
                 }
             })
             .catch(err=> {
+              console.log(err)
                 if(err.response.data.message==="Forbidden"){
-                    setAuth({});
+                  console.log("hjk")
                     axios.post('http://localhost:4000/auth/refresh',{email},
                     {
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
@@ -133,16 +134,17 @@ export default function Sell() {
                         console.log(accessToken)
                         setAuth({email, password,roles,accessToken})
                         send(accessToken);
-                        // submit();
-                        // navigate("/home")
+                    
                     })
                     .catch(err=> {
                         if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                          setAuth({});
                             navigate('/sell')
                         }
                     })
                 }
                 else{
+                  console.log("ghj")
                     navigate("/error")
                 }
             })
@@ -262,7 +264,7 @@ export default function Sell() {
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
@@ -369,7 +371,7 @@ export default function Sell() {
                     type="file"
                     name="image"
                     onChange={handleFileInputChange}
-                    value={fileInputState}
+                
                     className="form-input"
                 />
             <div class="img-container">
@@ -384,7 +386,7 @@ export default function Sell() {
             
             </div>
             <div class="sell-submit">
-                <button id="b" type="submit">Find Location Manually</button>
+                <button id="b" onClick={submit}>Find Location Manually</button>
                 <button id="b" style={{marginLeft:20}} onClick={submit1}>Use Your Current location</button>
             </div>
             </form>

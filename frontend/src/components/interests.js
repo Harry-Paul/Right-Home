@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
 import accountLogo from "./user_3177440.png"
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 
 export default function Interests(){
     const navigate = useNavigate()
@@ -16,6 +21,8 @@ export default function Interests(){
     const roles=auth?.roles;
     const accessToken=auth?.accessToken;
     const[accstyle,setAccstyle]=useState("ul-before");
+    const[desc,setDesc]=useState("")
+    const [open, setOpen] = React.useState(false);
 
       useEffect(() => {
         send(accessToken)
@@ -63,6 +70,17 @@ export default function Interests(){
         }
         
       },[]);
+
+      const handleClickToOpen = (description) => {
+        return () => {
+          setDesc(description)
+        setOpen(true);
+        }
+    };
+ 
+    const handleToClose = () => {
+        setOpen(false);
+    };
 
 
       const home = ()=>{
@@ -134,7 +152,7 @@ export default function Interests(){
             <button class="Buybtn">BUY<i class="arrow"></i></button>
             <div class="Buy-content">
               <li onClick={(e)=>buy(e,"house","buy")}>Houses for sale</li>
-              <li onClick={(e)=>buy(e,"aparrment","buy")}>Apartments for sale</li>
+              <li onClick={(e)=>buy(e,"apartment","buy")}>Apartments for sale</li>
               <li onClick={(e)=>buy(e,"none","buy")}>All Listings</li>
             </div>
           </div>
@@ -169,8 +187,21 @@ export default function Interests(){
         </div>
             </header>
             <h1 style={{marginLeft:118}}>INTERESTS ON OWNED PROPERTIES</h1>
+            <Dialog open={open} onClose={handleToClose}>
+                <DialogTitle>Description from interested Buyer</DialogTitle>
+                <DialogContent>
+                  {desc}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleToClose}
+                        color="primary" >
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <div class="interests-props-container">
             {props?.map((marker) => (
+              <div class="int-props">
                 <div class="interests-props" onClick={submit(marker.prop._id)}>
                         <img id="interests-prop-image" src={marker.prop.images[0]}/>
                     <div class="content">
@@ -181,6 +212,8 @@ export default function Interests(){
                     <p>Phone No: {marker.buyerphone}</p>
                     <p>Email: {marker.buyer}</p>
                     </div>
+                    </div>
+                    <button id="b" style={{marginLeft:140 , fontSize:20}} onClick={handleClickToOpen(marker.description)}>View Description</button>
                     </div>
             ))}
             </div>
