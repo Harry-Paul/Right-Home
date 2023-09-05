@@ -37,7 +37,7 @@ export default function Sell(){
         e.preventDefault()
         send(accessToken);
         function send(accessToken){
-            axios.post('http://localhost:4000/buy',{city,state,country},
+            axios.post('http://localhost:4000/buy',{street,city,state,country},
             {
             headers: {
               'Authorization': `Bearer ${accessToken}`
@@ -282,7 +282,7 @@ export default function Sell(){
             
             
             <form class="buy-form" onSubmit={submit} >
-                
+                <input type="text" onChange={(e) => {setStreet(e.target.value)}} placeholder="Street" name="Street" id="" />
                 <input type="text" onChange={(e) => {setCity(e.target.value)}} placeholder="City" name="City" id="" />
                 <input type="text" onChange={(e) => {setState(e.target.value)}} placeholder="State" name="State" id="" />
                 <input type="text" onChange={(e) => {setCountry(e.target.value)}} placeholder="Country" name="Country" id="" />

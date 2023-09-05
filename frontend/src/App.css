@@ -496,7 +496,11 @@
     color: black;
     background-color: white;
     border:none;
-    box-shadow: 1px 1px 15px -3px #000000;
+    box-shadow: 1px 1px 10px -3px #000000;
+  }
+
+  #b:hover{
+    transform: scale(1.005);
   }
 
   .buy-map{
@@ -822,6 +826,27 @@
         margin:0px;
         object-fit:cover;
       }
+
+      .own-props{
+        display:block;
+        width:400px;
+        height:430px;
+        float:left;
+        margin-left:18px;
+        margin-right: 18px;
+        margin-top: 18px;
+        margin-bottom: 18px;
+        position: static;
+        padding: 0px;
+        object-fit:cover;
+        text-align: left;
+        box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.15);
+        font-family: system-ui;
+        }
+        
+        .own-props:hover{
+          transform: scale(1.005);
+        }
 
       .interests-props-container{
         display:flex;

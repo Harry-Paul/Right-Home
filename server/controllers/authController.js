@@ -21,7 +21,7 @@ const login = async (req,res) => {
                         }
                     },
                     `${process.env.ACCESS_TOKEN_SECRET}`,
-                    {expiresIn: "10s"}
+                    {expiresIn: "100s"}
                 );
                 const rToken = jwt.sign(
                     {id: user.email},
@@ -77,10 +77,12 @@ const refresh = (req, res) => {
                     }
                 },
                 `${process.env.ACCESS_TOKEN_SECRET}`,
-                {expiresIn: "10s"}
+                {expiresIn: "100s"}
             );
-
-            res.json({accessToken})
+            const email=foundUser.email
+            const password=foundUser.password
+            const roles=foundUser.role
+            res.json({accessToken,email,password,roles})
         }
     )
 }
@@ -104,6 +106,8 @@ const logout = async (req, res) => {
     // foundUser.refreshToken = foundUser.refreshToken.filter(rt => rt !== refreshToken);;
     // const result = await foundUser.save();
     // console.log(result);
+    await User.updateOne({refreshToken:refreshToken},{refreshToken:""})
+
 
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     res.sendStatus(204);

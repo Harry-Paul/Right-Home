@@ -124,6 +124,53 @@ export default function Ownprop(){
           setAccstyle("ul-before")
         }
        }
+
+       const remove=(i) => {
+        return () => {
+          const property=i.valueOf();
+          send(accessToken)
+        function send(accessToken){
+          axios.post('http://localhost:4000/remove',{property},
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          },
+          withCredentials: true
+        })
+        .then(result => {
+            
+        })
+        .catch(err=> {
+          console.log(err)
+          if(err.response.data.message==="Forbidden"){
+              axios.post('http://localhost:4000/auth/refresh',{email},
+              {
+                  headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                  withCredentials: true
+              })
+              .then(result=>{
+                  console.log(result)
+                  const accessToken=result.data.accessToken;
+                  setAuth({email, password,roles,accessToken})
+                  console.log(accessToken)
+                  send(accessToken);
+                  // submit();
+                  // navigate("/home")
+              })
+              .catch(err=> {
+                if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                    setAuth({});
+                     navigate('/home')
+                  }
+              })
+          }
+          else{
+            navigate("/error")
+        }
+        })
+        }
+        }
+      };
     
     return(
         <abc>
@@ -171,12 +218,14 @@ export default function Ownprop(){
             <h1 style={{marginLeft:118}}>OWNED PROPERTIES</h1>
             <div class="account-props-container">
             {props?.map((marker) => (
-                <div class="account-props" onClick={submit(marker._id)}>
+                <div class="own-props" onClick={submit(marker._id)}>
                         <img id="account-prop-image" src={marker.images[0]}/>
                     <div class="content">
                     <p id="price"> &#8377;{marker.price}</p>
                     <p id="details">{marker.beds} Beds &nbsp;{marker.baths} Baths &nbsp;{marker.area}Sq. Ft</p>
                     <p>{marker.address}</p>
+                    <button style={{marginLeft:100, fontSize:20, marginTop:7}} id="b">Sold</button>
+                    <button style={{marginLeft:20, fontSize:20, marginTop:7}} id="b" onClick={remove(marker._id)}>Remove</button>
                     </div>
                     </div>
             ))}

@@ -44,11 +44,13 @@ export default function Sell() {
         const prev = [...prevImg]
         const file = e.target.files[0];
         console.log(file)
-        prev.push(file);
+        if(file){
+          prev.push(file);
         setPrevImg(prev)
         previewFile(file);
         setSelectedFile(file);
         setFileInputState(e.target.value);
+        }
     };
 
     const previewFile = (file) => {
@@ -99,7 +101,11 @@ export default function Sell() {
             },withCredentials:true
             })
             .then(result => {
-                console.log(result)
+                if(result.data.message==="error"){
+                  alert("Enter valid location")
+                }
+                else{
+                  console.log(result)
                 const address=propname+", "+street+", "+city+", "+state+", "+country;
                 const lat = result.data.lat
                 const lon = result.data.lon
@@ -111,6 +117,7 @@ export default function Sell() {
                 console.log("a"+lat);
                 console.log("a"+lon);
                 navigate('/sellmap',{state:{id:email,lat:lat,lon:lon,address:address,area:area,price:price,beds:beds,baths:baths,description:description,type:type,status:status,imgArray:imgArray}})
+                }
             })
             .catch(err=> {
                 if(err.response.data.message==="Forbidden"){

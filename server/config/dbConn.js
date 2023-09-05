@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-require("dotenv").config;
-// console.log(process.env.ACCESS_TOKEN_SECRET)
+
+require("dotenv").config();
+
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb://localhost:27017/righthome", {
+        await mongoose.connect(process.env.DATABASE_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true
         });

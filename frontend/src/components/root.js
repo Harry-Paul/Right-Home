@@ -1,22 +1,44 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useLayoutEffect} from "react";
 import axios from "axios";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import useAuth from "../hooks/useAuth";
 
 export default function Root(){
     const navigate = useNavigate()
     const[props, setProps]=useState([]);
+    const { auth } = useAuth();
+    const { setAuth } = useAuth();
+    const email=""
     var cont;
 
-      useEffect(() => {
-        axios.post('http://localhost:4000/')
-        .then(result => {
-            cont = result.data.cont
-            setProps(result.data.cont);
-            console.log(cont);
-        })
-        .catch(err=> console.log(err))
-      },[]);
+    useLayoutEffect(() => {
+              axios.post('http://localhost:4000/auth/refresh',{email},
+              {
+                  headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                  withCredentials: true
+              })
+              .then(result=>{
+                  console.log(result)
+                  const email=result.data.email;
+                  const password=result.data.password;
+                  const roles=result.data.roles;
+                  const accessToken=result.data.accessToken;
+                  setAuth({email, password,roles,accessToken})
+                  console.log(accessToken)
+                  navigate("/home")
+                  
+              })
+              .catch(err=> {
+                if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                    setAuth({});
+          
+                  }
+              })
+          },[])
+          
+        
+      
 
   
     

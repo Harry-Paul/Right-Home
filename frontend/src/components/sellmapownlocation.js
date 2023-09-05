@@ -59,6 +59,7 @@ export default function SellMapOwn() {
               value=1;
                 if(result.data==="Created"){
                     console.log("Success")
+                    navigate("/home")
                 } 
             })
             .catch(err=> {
@@ -226,7 +227,7 @@ export default function SellMapOwn() {
       />
       {/* <LocationMarker /> */}
       <Dialog open={open} onClose={handleToClose}>
-                <DialogTitle>{"How are you?"}</DialogTitle>
+                <DialogTitle></DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Find Location

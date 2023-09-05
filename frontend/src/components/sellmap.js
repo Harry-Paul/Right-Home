@@ -3,9 +3,14 @@ import {MapContainer as SellMapContainer, Marker, Popup, TileLayer,useMap} from 
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import L from "leaflet";
 import axios from 'axios';
-import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
 import accountLogo from "./user_3177440.png"
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 
 
 export default function SellMap() {
@@ -34,6 +39,7 @@ export default function SellMap() {
   const [errMsg, setErrMsg] = useState("");
   const[accstyle,setAccstyle]=useState("ul-before");
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(true);
 
   const submit= () => {
     console.log("jkl")
@@ -53,6 +59,7 @@ export default function SellMap() {
           .then(result => {
               if(result.data==="Created"){
                   console.log("Success")
+                  navigate("/home")
               } 
           })
           .catch(err=> {
@@ -86,9 +93,6 @@ export default function SellMap() {
       }
   }
 
-  const cancel = () => {
-    navigate("/sell",{state:{id:email}})
-  }
 
   function DraggableMarker() {
     const markerRef = useRef(null)
@@ -176,10 +180,35 @@ export default function SellMap() {
     }
    }
 
+   const handleToClose = () => {
+    setOpen(false);
+};
+
+  const cancel=()=>{
+    navigate("/sell")
+  }
 
   return (
     <div class="sellmap">
       <header>
+      <Dialog open={open} onClose={handleToClose}>
+                <DialogTitle>{"Find the location"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Drag the marker to exact location
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleToClose}
+                        color="primary" >
+                        OK
+                    </Button>
+                    <Button onClick={cancel}
+                        color="primary" >
+                        Cancel
+                    </Button>
+                </DialogActions>
+            </Dialog>
                
                 <div class="buttons">
           <div class="Buy">

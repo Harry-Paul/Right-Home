@@ -20,9 +20,10 @@ export default function Home(){
     const[props, setProps]=useState([]);
     const [errMsg, setErrMsg] = useState("");
     var cont;
-    const[option,setOption]=useState("Buy");
+    const[option,setOption]=useState("buy");
     const[style,setStyle]=useState("ul1");
     const[accstyle,setAccstyle]=useState("ul-before");
+    const[address,setAddress]=useState("");
 
       useLayoutEffect(() => {
         send(accessToken);
@@ -73,7 +74,91 @@ export default function Home(){
         
       },[]);
 
-  
+
+    const search=()=>{
+      send(accessToken);
+        function send(accessToken){
+          const status=option;
+          axios.post('http://localhost:4000/homesearch',{address,status},
+          {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            },
+            withCredentials: true
+          })
+          .then(result => {
+            if(result.data.message==="error"){
+              alert("Enter valid location")
+          }
+          else{
+              console.log(result)
+              const lat = result.data.lat
+              const lon = result.data.lon
+              const cont = result.data.cont
+              console.log(cont);
+              console.log("a"+lat);
+              console.log("a"+lon);
+              var array=[]
+              for(let i=0;i<cont.length;i++){
+                  if(calcCrow(lat,lon,cont[i].lat,cont[i].lon)<=Number(100)){
+                      array.push(cont[i])
+                  }
+              }
+              navigate('/buymap',{state:{lat:lat,lon:lon,cont:array}})
+          }
+          })
+          .catch(err=> {
+            console.log(err)
+            if(err.response.data.message==="Forbidden"){
+                axios.post('http://localhost:4000/auth/refresh',{email},
+                {
+                    headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                    withCredentials: true
+                })
+                .then(result=>{
+                    console.log(result)
+                    const accessToken=result.data.accessToken;
+                    setAuth({email, password,roles,accessToken})
+                    console.log(accessToken)
+                    send(accessToken);
+                    // submit();
+                    // navigate("/home")
+                })
+                .catch(err=> {
+                  if(err.response.data.message==="Forbidden" || err.response.data.message==="Unauthorized"){
+                      setAuth({});
+                       navigate('/home')
+                    }
+                })
+            }
+            else{
+              navigate("/error")
+          }
+            
+          })
+        }
+    }
+
+    function calcCrow(lat1, lon1, lat2, lon2) 
+    {
+      var R = 6371; // km
+      var dLat = toRad(lat2-lat1);
+      var dLon = toRad(lon2-lon1);
+      var lat1 = toRad(lat1);
+      var lat2 = toRad(lat2);
+
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      return d;
+    }
+
+    // Converts numeric degrees to radians
+    function toRad(Value) 
+    {
+        return Value * Math.PI / 180;
+    }
    
     const submit=(i) => {
       return () => {
@@ -199,15 +284,14 @@ export default function Home(){
                   <ul class={style}>
                     <li onClick={buyOption}>BUY</li>
                     <li onClick={rentOption}>RENT</li>
-                    <li onClick={soldOption}>SOLD</li>
                   </ul>
               </div>
               <div class="search_field">
                 
-                <input type="text" class="input" placeholder="Search"/>
+                <input type="text" class="input" onChange={(e) => {setAddress(e.target.value)}} placeholder="Search"/>
                 <i class="fas fa-search"></i>
             </div>
-            <div class="search-logo">
+            <div class="search-logo" onClick={search}>
               <img src={logo}/>
             </div>
           </div>
