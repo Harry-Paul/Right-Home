@@ -21,12 +21,12 @@ const login = async (req,res) => {
                         }
                     },
                     `${process.env.ACCESS_TOKEN_SECRET}`,
-                    {expiresIn: "10s"}
+                    {expiresIn: "500s"}
                 );
                 const rToken = jwt.sign(
                     {id: user.email},
                     `${process.env.REFRESH_TOKEN_SECRET}`,
-                    {expiresIn: "20s"}
+                    {expiresIn: "1d"}
                 );
 
                 res.cookie('jwt', rToken, {
@@ -77,7 +77,7 @@ const refresh = (req, res) => {
                     }
                 },
                 `${process.env.ACCESS_TOKEN_SECRET}`,
-                {expiresIn: "10s"}
+                {expiresIn: "500s"}
             );
             const email=foundUser.email
             const password=foundUser.password
