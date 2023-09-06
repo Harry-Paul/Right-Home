@@ -10,8 +10,8 @@ const loginLimiter = rateLimit({
         logEvents(`Too Many Requests: ${options.message.message}\t${req.method}\t${req.url}\t${req.headers.origin}`, 'errLog.log')
         res.status(options.statusCode).send(options.message)
     },
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    standardHeaders: true, 
+    legacyHeaders: false, 
 })
 
 module.exports = loginLimiter
