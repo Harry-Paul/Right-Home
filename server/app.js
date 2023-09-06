@@ -64,7 +64,7 @@ app.use('/showownprop', require('./routes/showownprop'));
 
 app.use('/remove', require('./routes/remove'));
 
-app.listen(4000,function(){
+app.listen(process.env.PORT,function(){
     console.log("Server is running");
 });
 
