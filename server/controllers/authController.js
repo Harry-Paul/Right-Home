@@ -26,7 +26,7 @@ const login = async (req,res) => {
                 const rToken = jwt.sign(
                     {id: user.email},
                     `${process.env.REFRESH_TOKEN_SECRET}`,
-                    {expiresIn: "1d"}
+                    {expiresIn: "20s"}
                 );
 
                 res.cookie('jwt', rToken, {
