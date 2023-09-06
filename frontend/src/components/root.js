@@ -1,5 +1,5 @@
 import React, {useEffect, useState,useLayoutEffect} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
@@ -13,7 +13,7 @@ export default function Root(){
     var cont;
 
     useLayoutEffect(() => {
-              axios.post('http://localhost:4000/auth/refresh',{email},
+              axios.post('/auth/refresh',{email},
               {
                   headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                   withCredentials: true

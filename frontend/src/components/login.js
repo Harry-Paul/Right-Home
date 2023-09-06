@@ -1,7 +1,8 @@
 import React, {useRef, useEffect, useState, useContext} from "react";
-import axios from "axios";
+// import axios from "axios";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import axios from "../api/axios"
 
 export default function Login() {
     const { setAuth } = useAuth();
@@ -21,7 +22,7 @@ export default function Login() {
 
     const submit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4000/auth',{email,password},
+        axios.post('/auth',{email,password},
         {
             headers: {"Access-Control-Allow-Credentials":true},
             withCredentials: true

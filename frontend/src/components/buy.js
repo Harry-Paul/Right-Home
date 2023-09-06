@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef,useLayoutEffect} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import accountLogo from "./user_3177440.png"
@@ -37,7 +37,7 @@ export default function Sell(){
         e.preventDefault()
         send(accessToken);
         function send(accessToken){
-            axios.post('http://localhost:4000/buy',{street,city,state,country},
+            axios.post('/buy',{street,city,state,country},
             {
             headers: {
               'Authorization': `Bearer ${accessToken}`
@@ -69,7 +69,7 @@ export default function Sell(){
         .catch(err=> {
             if(err.response.data.message==="Forbidden"){
                 
-                axios.post('http://localhost:4000/auth/refresh',{email},
+                axios.post('/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     withCredentials: true
@@ -112,7 +112,7 @@ export default function Sell(){
     useLayoutEffect(() => {
         send(accessToken);
         function send(accessToken){
-          axios.post('http://localhost:4000/home',{email,type,status},
+          axios.post('/home',{email,type,status},
           {
             headers: {
               'Authorization': `Bearer ${accessToken}`
@@ -177,7 +177,7 @@ export default function Sell(){
   
       const logout=() => {
         console.log("sdf")
-        axios.post('http://localhost:4000/auth/logout',{email},
+        axios.post('/auth/logout',{email},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`

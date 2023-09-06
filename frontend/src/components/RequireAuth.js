@@ -1,7 +1,7 @@
 import { useLocation, Navigate, Outlet,useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import React, {useEffect, useState, useLayoutEffect} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 
 const RequireAuth = (id) => {
     const { auth } = useAuth();
@@ -15,7 +15,7 @@ const RequireAuth = (id) => {
     useLayoutEffect(()=>{
         if(!auth.email){
             console.log("rty")
-            axios.post('http://localhost:4000/auth/refresh',{auth},
+            axios.post('/auth/refresh',{auth},
                     {
                         headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                         withCredentials: true

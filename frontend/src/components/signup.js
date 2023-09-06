@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 import {useNavigate, Link} from "react-router-dom";
 
 export default function Signup() {
@@ -10,7 +10,7 @@ export default function Signup() {
     const navigate = useNavigate()
     const submit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4000/signup',{email,password,role,phoneno})
+        axios.post('/signup',{email,password,role,phoneno})
         .then(result => {
             if(result.data==="Signed up"){
                 navigate('/')

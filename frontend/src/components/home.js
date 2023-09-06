@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useLayoutEffect} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
@@ -31,7 +31,7 @@ export default function Home(){
         }
         send(accessToken);
         function send(accessToken){
-          axios.post('http://localhost:4000/home',{email},
+          axios.post('/home',{email},
           {
             headers: {
               'Authorization': `Bearer ${accessToken}`
@@ -47,7 +47,7 @@ export default function Home(){
           .catch(err=> {
             console.log(err)
             if(err.response.data.message==="Forbidden"){
-                axios.post('http://localhost:4000/auth/refresh',{email},
+                axios.post('/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     withCredentials: true
@@ -82,7 +82,7 @@ export default function Home(){
       send(accessToken);
         function send(accessToken){
           const status=option;
-          axios.post('http://localhost:4000/homesearch',{address,status},
+          axios.post('/homesearch',{address,status},
           {
             headers: {
               'Authorization': `Bearer ${accessToken}`
@@ -113,7 +113,7 @@ export default function Home(){
           .catch(err=> {
             console.log(err)
             if(err.response.data.message==="Forbidden"){
-                axios.post('http://localhost:4000/auth/refresh',{email},
+                axios.post('/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     withCredentials: true
@@ -182,7 +182,7 @@ export default function Home(){
 
     const logout=() => {
       console.log("sdf")
-      axios.post('http://localhost:4000/auth/logout',{email},
+      axios.post('/auth/logout',{email},
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`

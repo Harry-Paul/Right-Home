@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {MapContainer as BuyMapContainer, Marker, Popup, TileLayer,useMapEvents} from "react-leaflet";
 import {useLocation, useNavigate, Link} from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios"
 import useAuth from "../hooks/useAuth";
 import accountLogo from "./user_3177440.png"
 
@@ -42,7 +42,7 @@ export default function BuyMap() {
   
       const logout=() => {
         console.log("sdf")
-        axios.post('http://localhost:4000/auth/logout',{email},
+        axios.post('/auth/logout',{email},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../api/axios"
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import useAuth from "../hooks/useAuth";
@@ -20,7 +20,7 @@ export default function Favourite(){
       useEffect(() => {
         send(accessToken)
         function send(accessToken){
-          axios.post('http://localhost:4000/showfav',{email},
+          axios.post('/showfav',{email},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`
@@ -35,7 +35,7 @@ export default function Favourite(){
         .catch(err=> {
           console.log(err)
           if(err.response.data.message==="Forbidden"){
-              axios.post('http://localhost:4000/auth/refresh',{email},
+              axios.post('/auth/refresh',{email},
               {
                   headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                   withCredentials: true
@@ -88,7 +88,7 @@ export default function Favourite(){
   
       const logout=() => {
         console.log("sdf")
-        axios.post('http://localhost:4000/auth/logout',{email},
+        axios.post('/auth/logout',{email},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`

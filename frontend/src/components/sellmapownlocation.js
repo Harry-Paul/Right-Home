@@ -3,7 +3,7 @@ import {MapContainer as SellMapOwnContainer, Marker, Popup, TileLayer,useMap} fr
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import useGeoLocation from "./useGeoLocation";
 import leafletElement from "leaflet";
-import axios from "axios";
+import axios from "../api/axios"
 import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -49,7 +49,7 @@ export default function SellMapOwn() {
         const lon=loc.coordinates.lon;
         send(accessToken)
         function send(accessToken){
-          axios.post('http://localhost:4000/sellmap',{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray},
+          axios.post('/sellmap',{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray},
         {
           headers: {
             'Authorization': `Bearer ${accessToken}`
@@ -66,7 +66,7 @@ export default function SellMapOwn() {
               console.log(err)
               if(err.response.data.message==="Forbidden"){
             
-                  axios.post('http://localhost:4000/auth/refresh',{email},
+                  axios.post('/auth/refresh',{email},
                   {
                       headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                       withCredentials: true
@@ -137,7 +137,7 @@ export default function SellMapOwn() {
 
     const logout=() => {
       console.log("sdf")
-      axios.post('http://localhost:4000/auth/logout',{email},
+      axios.post('/auth/logout',{email},
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`

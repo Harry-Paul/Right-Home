@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef,useMemo, useCallback} from "react";
 import {MapContainer as SellMapContainer, Marker, Popup, TileLayer,useMap} from "react-leaflet";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import L from "leaflet";
-import axios from 'axios';
+import axios from "../api/axios"
 import useAuth from "../hooks/useAuth";
 import accountLogo from "./user_3177440.png"
 import Dialog from "@material-ui/core/Dialog";
@@ -50,7 +50,7 @@ export default function SellMap() {
       setLon(position.lng);
       send(accessToken)
       function send(accessToken){
-      axios.post('http://localhost:4000/sellmap',{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray},
+      axios.post('/sellmap',{email,lat,lon,area,price,beds,baths,address,description,type,status,imgArray},
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`
@@ -66,7 +66,7 @@ export default function SellMap() {
            
             if(err.response.data.message==="Forbidden"){
                 
-                axios.post('http://localhost:4000/auth/refresh',{email},
+                axios.post('/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     withCredentials: true
@@ -144,7 +144,7 @@ export default function SellMap() {
 
   const logout=() => {
     console.log("sdf")
-    axios.post('http://localhost:4000/auth/logout',{email},
+    axios.post('/auth/logout',{email},
     {
       headers: {
         'Authorization': `Bearer ${accessToken}`
