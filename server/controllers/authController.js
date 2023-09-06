@@ -21,7 +21,7 @@ const login = async (req,res) => {
                         }
                     },
                     `${process.env.ACCESS_TOKEN_SECRET}`,
-                    {expiresIn: "100s"}
+                    {expiresIn: "500s"}
                 );
                 const rToken = jwt.sign(
                     {id: user.email},
@@ -77,7 +77,7 @@ const refresh = (req, res) => {
                     }
                 },
                 `${process.env.ACCESS_TOKEN_SECRET}`,
-                {expiresIn: "100s"}
+                {expiresIn: "500s"}
             );
             const email=foundUser.email
             const password=foundUser.password
