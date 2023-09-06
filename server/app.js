@@ -22,7 +22,7 @@ const path = require("path")
 connectDB();
 app.use(logger)
 
-app.use(cors({credentials: true, origin: 'https://right-home.onrender.com/'}));
+app.use(cors({credentials: true, origin: 'https://right-home.onrender.com'}));
 app.use(bodyParser.json({limit: '50mb', type: 'application/json'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
