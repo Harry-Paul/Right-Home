@@ -252,20 +252,18 @@
 
   .home-account-dropdown{
     color: white;
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    right: 20px;
     font-size: 15px;
-    margin-left: 520px;
     padding-top: 10px;
     cursor: pointer;
   }
 
   .account-dropdown{
     color: white;
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    right: 20px;
     font-size: 15px;
-    margin-left: 400px;
     padding-top: 10px;
     cursor: pointer;
   }
@@ -846,6 +844,7 @@
 
       .form-ul-before{
         display:none;
+        
       }
 
       .form-ul-after{
@@ -899,6 +898,7 @@
         font-size: 25px;
         color: black;
         background-color: white;
+        cursor: pointer;
       }
 
       .signup-card{
@@ -945,7 +945,18 @@
       color: white;
       background-color: #000000;
       text-align: center;
-      margin: 50px;
+      margin: 20px;
+      border-radius: 30px;
+      opacity: 0.75;
+      cursor: pointer;
+    }
+
+    .root-rent{
+      width: 500px;
+      color: white;
+      background-color: #000000;
+      text-align: center;
+      margin: 20px;
       border-radius: 30px;
       opacity: 0.75;
       cursor: pointer;
@@ -956,13 +967,18 @@
       color: white;
       background-color: #000000;
       text-align: center;
-      margin: 50px;
+      margin: 20px;
       border-radius: 30px;
       opacity: 0.75;
       cursor: pointer;
     }
 
     .root-buy:hover{
+      transform: scale(1.005);
+      opacity: 0.8;
+    }
+
+    .root-rent:hover{
       transform: scale(1.005);
       opacity: 0.8;
     }
@@ -990,6 +1006,17 @@
     }
 
     .root-sell p{
+      margin-top: 0;
+      padding: 80px;
+    }
+
+    .root-rent h3{
+      margin-left: auto;
+      font-size: 50px;
+      margin-bottom: 0;
+    }
+
+    .root-rent p{
       margin-top: 0;
       padding: 80px;
     }

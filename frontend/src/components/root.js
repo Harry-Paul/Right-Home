@@ -43,7 +43,11 @@ export default function Root(){
   
     
     const buy=() => {
-      navigate('/login',{state:{type:"none",status:"none",to:"buy"}});
+      navigate('/login',{state:{type:"none",status:"buy",to:"buy"}});
+    }
+
+    const rent=() => {
+      navigate('/login',{state:{type:"none",status:"rent",to:"buy"}});
     }
 
     const sell=()=>{
@@ -69,6 +73,7 @@ export default function Root(){
             </div>
           <div class="root-cont">
             <div class="root-buy" onClick={buy}><h3>BUY</h3><p>Find your place with an immersive photo experience and the most listings, including things you won’t find anywhere else.</p></div>
+            <div class="root-rent" onClick={rent}><h3>RENT</h3><p>We’re creating a seamless online experience – from shopping on the largest rental network, to applying, to paying rent.</p></div>
             <div class="root-sell" onClick={sell}><h3>SELL</h3><p>No matter what path you take to sell your home, we can help you navigate a successful sale.</p></div>
           </div>
         </div>

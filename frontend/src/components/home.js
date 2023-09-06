@@ -220,7 +220,13 @@ export default function Home(){
      }
 
    const showOptions=()=>{
-    setStyle("ul2")
+    if(style==="ul1"){
+      setStyle("ul2")
+    }
+    else{
+      setStyle("ul1")
+    }
+    
    }
 
    const buyOption=()=>{
@@ -279,8 +285,8 @@ export default function Home(){
         
         <div class="wrapper">
           <div class="search_box">
-              <div class="dropdown">
-                  <div class="default_option" onClick={showOptions}>{option}</div>  
+              <div class="dropdown" onClick={showOptions}>
+                  <div class="default_option" >{option}</div>  
                   <ul class={style}>
                     <li onClick={buyOption}>BUY</li>
                     <li onClick={rentOption}>RENT</li>
