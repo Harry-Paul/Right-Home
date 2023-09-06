@@ -880,7 +880,7 @@
       }
 
       .input-group{
-        width:350px;
+        /* width:350px; */
         margin:auto;
         display:flex;
         flex-direction:column;
@@ -901,22 +901,30 @@
         cursor: pointer;
       }
 
+      
+
       .signup-card{
         font-size: 25px;
         background-color:#000000;
         opacity:0.65;
         border-radius: 20px;
         color:white;
-        width:500px;
+        max-width:25%;
         height: 530px;
-        margin-left:auto;
-        margin-right: auto;
-        
+        margin:auto;
+        padding: 80px;
+        padding-bottom: 0;
+        padding-top: 0;
       }
+
+      @media screen and (max-width: 600px) {
+        .signup-card{
+          max-width: 90%;
+        }}
 
       .signup-card a{
         margin-top: 5px;
-        margin-left:80px;
+        margin-left:0px;
         padding-bottom: 30px;
         color: #00d0ff;
       }
@@ -924,7 +932,7 @@
       .signup-card p{
         margin-top: 5px;
         margin-bottom: 5px;
-        margin-left:80px;
+        margin-left:0px;
       }
 
     .signup{
