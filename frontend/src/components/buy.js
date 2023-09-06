@@ -135,7 +135,7 @@ export default function Sell(){
           .catch(err=> {
             console.log(err)
             if(err.response.data.message==="Forbidden"){
-                axios.post('http://localhost:4000/auth/refresh',{email},
+                axios.post('/auth/refresh',{email},
                 {
                     headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
                     withCredentials: true
