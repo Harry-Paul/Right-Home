@@ -78,7 +78,7 @@
   .root-head{
     width:100%;
     height:750px;
-    background-image: url("C:\Users\harry\Downloads\lycs-architecture-kUdbEEMcRwE-unsplash (2).jpg");
+    background-image: url("https://res.cloudinary.com/dstxl4pzw/image/upload/v1693992788/lycs-architecture-kUdbEEMcRwE-unsplash_2_zhjq78.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -88,7 +88,7 @@
     /* background-color: black; */
     width:100%;
     height:500px;
-    background-image: url("C:\Users\harry\Downloads\lycs-architecture-kUdbEEMcRwE-unsplash (2).jpg");
+    background-image: url("https://res.cloudinary.com/dstxl4pzw/image/upload/v1693992788/lycs-architecture-kUdbEEMcRwE-unsplash_2_zhjq78.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -928,7 +928,7 @@
       }
 
     .signup{
-      background-image: url("C:\Users\harry\Downloads\Screenshot 2023-08-28 171314.png");
+      background-image: url("https://res.cloudinary.com/dstxl4pzw/image/upload/v1693992923/Screenshot_2023-08-28_171314_npalkh.png");
       background-size: cover;
       height: 750px;;
     }
