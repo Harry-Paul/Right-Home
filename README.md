@@ -1,5 +1,7 @@
 # Right-Home
 
+Find the app here -> <a href="https://right-home.onrender.com/">Live link</a>
+
 # Features
 * Authentication
     * Signup
@@ -10,7 +12,7 @@
 * Locate houses or apartments on map
 * Search for properties using address
 * Send interest in a property with an offer description to the seller
-* Add peoperties to favourites
+* Add properties to favourites
 * Sell properties along with uploading images
 
 ***
