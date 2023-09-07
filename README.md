@@ -1,7 +1,33 @@
 # Right-Home
-This real estate website allows users to buy, sell, and rent houses or apartments. This app allows users to find properties by locating them on the map using location features. Users can filter properties based on various requirements.
 
-Images of pages:
+# Features
+* Authentication
+    * Signup
+    * Login
+    * Logout
+* Backend authentication by storing JWT tokens in cookies
+* Rate limiter in backend
+* Locate houses or apartments on map
+* Search for properties using address
+* Send interest in a property with an offer description to the seller
+* Add peoperties to favourites
+* Sell properties along with uploading images
+
+***
+
+# Built Using
+* ReactJS
+* Node.js
+* MongoDB
+* Cloudinary
+* React Leaflet
+* LocationIQ API
+* React Context API
+* Axios
+
+***
+
+# Images of pages:
 
 <img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693590830/img1_eqq4do.png" height="200" style="margin: 10px;"/>
 <img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693590928/img2_gr3mks.png" height="200" style="margin: 10px;"/>
