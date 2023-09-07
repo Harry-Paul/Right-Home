@@ -39,7 +39,7 @@ const login = async (req,res) => {
                 async function run(){
                     await user.updateOne({refreshToken:rToken})
                 }
-                console.log("qwe")
+                console.log("log in Success")
                 return res.json({"auth": true, "token": accessToken, "role":user.role});
             }
             else{
@@ -82,6 +82,7 @@ const refresh = (req, res) => {
             const email=foundUser.email
             const password=foundUser.password
             const roles=foundUser.role
+            console.log("refresh success")
             res.json({accessToken,email,password,roles})
         }
     )
