@@ -41,6 +41,7 @@ console.log("wqw3q")
 
 const handleHomesearch=async(req,res)=>{
     const{address,status}=req.body
+    console.log(status)
     axios.get("https://eu1.locationiq.com/v1/search?key=pk.ac7e701e477a258e0ea7e0ea48fde616&q="+address+"&format=json")
     .then(response=>{
         const lat=response.data[0].lat
@@ -48,6 +49,7 @@ const handleHomesearch=async(req,res)=>{
                 run().catch(error => res.json({"message":"error"}));
                 async function run(){
                     const cont=await Property.find({status:status});
+                    console.log(cont)
                     const msg="Success"
                     res.json({"message":msg,"lat":lat,"lon":long,"cont":cont})
                 }
