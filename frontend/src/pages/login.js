@@ -3,6 +3,7 @@ import React, {useRef, useEffect, useState, useContext} from "react";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios"
+import Navbar from "../components/Navbar";
 
 export default function Login() {
     const { setAuth } = useAuth();
@@ -24,7 +25,8 @@ export default function Login() {
         e.preventDefault()
         axios.post('/auth',{email,password},
         {
-            headers: {"Access-Control-Allow-Credentials":true},
+            headers: {"Access-Control-Allow-Credentials":true,
+            'Access-Control-Allow-Origin': '*'},
             withCredentials: true
         })
         .then(result=> {
@@ -54,22 +56,28 @@ export default function Login() {
   
 
     return (
-         <div class="signup"><br></br><br></br><br></br>
-            <div class="signup-card">
-            <form onSubmit={submit} >
-                <div class="input-group">
-                <h2>SIGN IN</h2>
-                <label for="email">EMAIL</label>
-                <input type="text" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="email" id="" />
-                <label for="passowrd">PASSWORD</label>
-                <input type="password" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
-                <button type="submit">Submit</button>
+        <>
+        <Navbar/>
+        <div className="mx-auto bg-login bg-no-repeat bg-cover bg-center bg-fixed">
+            <div className="lg:py-[89px] py-[205px]" >
+            <div className="mx-auto  bg-black lg:w-[500px] md:w-[400px] w-[300px] text-white lg:px-[60px] px-[40px] lg:py-20 py-10 lg:text-2xl text-xl">
+            <form onSubmit={submit} className="">
+                <div className="flex flex-col gap-4">
+                <h2 className="lg:text-4xl md:text-3xl text-2xl text-center">SIGN IN</h2>
+                <label for="email" className="">EMAIL</label>
+                <input type="text" className="" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="email" id="" />
+                <label for="passowrd" className="">PASSWORD</label>
+                <input type="password" className="" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
+                <button type="submit" className="bg-blue-400 py-[3px] mt-5 text-black">Submit</button>
                 </div>
             </form><br></br>
             <p>OR</p>
-            <Link to="/signup">To Sign-up</Link>
+            <Link to="/signup" className="text-green-400">To Sign-up</Link>
+            </div>
             </div>
          </div>
+        </>
+         
 
          
     )

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "../api/axios"
 import {useNavigate, Link} from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function Signup() {
     const[email,setEmail]=useState('');
@@ -10,7 +11,12 @@ export default function Signup() {
     const navigate = useNavigate()
     const submit = (e) => {
         e.preventDefault()
-        axios.post('/signup',{email,password,role,phoneno})
+        axios.post('/signup',{email,password,role,phoneno},
+        {
+            headers: {"Access-Control-Allow-Credentials":true,
+            'Access-Control-Allow-Origin': '*'},
+            withCredentials: true
+        })
         .then(result => {
             if(result.data==="Signed up"){
                 navigate('/')

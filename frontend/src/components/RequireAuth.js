@@ -5,6 +5,7 @@ import axios from "../api/axios"
 
 const RequireAuth = (id) => {
     const { auth } = useAuth();
+    console.log("cvb"+useAuth())
     const location = useLocation();
     const { setAuth } = useAuth();
     const navigate = useNavigate();
