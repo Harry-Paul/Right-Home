@@ -240,7 +240,7 @@ export default function Property() {
                     </Button>
                 </DialogActions>
             </Dialog>
-            <div className="md:mt-[100px] mt-[42px]">
+            <div className="md:mt-[100px] mt-[41px]">
                 <div className="md:grid md:grid-cols-3 xl:mx-[80px] lg:mx-[40px] md:mx-[30px] md:text-left text-center">
                     <div className="md:col-span-2 xl:mx-[30px] lg:mx-[30px] md:mx-[20px] flex flex-col lg:h-[470px] md:h-[450px] h-[300px] overflow-scroll">
                         <div className="">
@@ -249,7 +249,7 @@ export default function Property() {
                         <div className="grid lg:grid-cols-2  md:grid-cols-1 grid-cols-2 md:gap-2 gap-1 md:my-2 my-1">
                         {imgArray.slice(1, imgArray.length)?.map((image) => (
                             <div className="col-span-1 ">
-                                <img className="xl:h-[300px] lg:h-[250px] h-[150px]  w-full object-cover"
+                                <img className="xl:h-[300px] lg:h-[250px] md:h-[250px] h-[150px]  w-full object-cover"
                                     src={image}
                                     alt="new"
                                 />
