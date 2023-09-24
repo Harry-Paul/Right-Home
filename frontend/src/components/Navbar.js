@@ -28,7 +28,13 @@ const Navbar = () => {
 
     const buy = (e, type, status) => {
         e.preventDefault()
-        navigate('/buy', { state: { type: type, status: status } });
+        console.log(location)
+        if(location.pathname==="/buy"){
+          navigate('/home', { state: { type: type, status: status } });
+        }
+        else{
+          navigate('/buy', { state: { type: type, status: status } });
+        }
       }
     
       const sell = () => {
@@ -73,7 +79,7 @@ const Navbar = () => {
     
       
   return (
-    <div className="fixed left-0 right-0 top-0 z-10 bg-black md:h-[60px] h-[40px] ">
+    <div className="fixed shadow-xl left-0 right-0 top-0 z-10 bg-black md:h-[60px] h-[40px] ">
         <header className="flex flex-row md:h-[60px] h-[40px] px-5 items-center">
         <div className=' lg:text-2xl lg:py-[10px] text-white cursor-pointer' onClick={home}>
           <img className="h-[30px]" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695469260/house_v6mvjt.png" />

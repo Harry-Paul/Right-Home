@@ -198,7 +198,7 @@ export default function Home() {
             </select>
             <div className="flex justify-center">
 
-              <input type="text" className="mx-auto lg:h-[80px] lg:w-[350px] md:h-[60px] md:w-[220px] h-[50px] w-[180px] lg:text-2xl md:text-xl text-lg px-5" onChange={(e) => { setAddress(e.target.value) }} placeholder="Search" />
+              <input type="text" className="mx-auto lg:h-[80px] lg:w-[350px] md:h-[60px] md:w-[220px] h-[50px] w-[180px] lg:text-2xl md:text-xl text-lg px-5" onChange={(e) => { setAddress(e.target.value) }} placeholder="Enter a location" />
               
             </div>
             <div className="bg-slate-300 lg:w-[70px] rounded-xl my-[2px] mx-[2px] hover:bg-slate-400 cursor-pointer flex justify-center items-center" onClick={search}>

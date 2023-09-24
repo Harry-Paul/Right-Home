@@ -65,7 +65,7 @@ export default function Login() {
                 <div className="flex flex-col gap-4">
                 <h2 className="lg:text-4xl md:text-3xl text-2xl text-center">SIGN IN</h2>
                 <label for="email" className="">EMAIL</label>
-                <input type="text" className="text-black md:py-1 px-3" onChange={(e) => {setEmail(e.target.value)}} placeholder="email"/>
+                <input type="text" className="text-black md:py-1 px-3" onChange={(e) => {setEmail(e.target.value)}} placeholder="email" name="email" id=""/>
                 <label for="passowrd" className="">PASSWORD</label>
                 <input type="password" className="text-black md:py-1 px-3" onChange={(e) => {setPassword(e.target.value)}} placeholder="password" name="pass" id="" />
                 <button type="submit" className="bg-blue-400 hover:bg-blue-500 md:py-1 mt-5 text-black">Submit</button>
