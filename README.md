@@ -31,9 +31,9 @@ Find the app here -> <a href="https://right-home.onrender.com/">Live link</a>
 
 # Images of pages:
 
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693590830/img1_eqq4do.png" height="200" style="margin: 10px;"/>
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693590928/img2_gr3mks.png" height="200" style="margin: 10px;"/>
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693590997/img3_zra1gv.png" height="200" style="margin: 10px;"/>
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693591059/img4_smano8.png" height="200" style="margin: 10px;"/>
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693591107/img5_itsn1j.png" height="200" style="margin: 10px;"/>
-<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1693591158/img6_xpnn2l.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534385/imga1_leljof.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534401/imga2_onbioj.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534405/imga3_qbktca.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534419/imga4_os1og5.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534422/imga5_vysnub.png" height="200" style="margin: 10px;"/>
+<img align="center" src="https://res.cloudinary.com/dstxl4pzw/image/upload/v1695534428/imga6_eu6htn.png" height="200" style="margin: 10px;"/>
