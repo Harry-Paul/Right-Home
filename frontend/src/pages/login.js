@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState, useContext} from "react";
+import React, {useRef, useEffect, useState, useContext, useLayoutEffect} from "react";
 // import axios from "axios";
 import {useNavigate, Link, useLocation} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -18,8 +18,33 @@ export default function Login() {
     const [email,setEmail]=useState('');
     const[password,setPassword]=useState('');
     const [errMsg, setErrMsg] = useState("");
+    const[pending, setPending]=useState(true)
     const userRef = useRef();
     const errRef = useRef();
+
+      useLayoutEffect(() => {
+    axios.post('/auth/refresh', { email },
+      {
+        headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+        withCredentials: true
+      })
+      .then(result => {
+        console.log(result)
+        const email = result.data.email;
+        const password = result.data.password;
+        const roles = result.data.roles;
+        const accessToken = result.data.accessToken;
+        setAuth({ email, password, roles, accessToken })
+        console.log(accessToken)
+        navigate("/home")
+      })
+      .catch(err => {
+        if (err.response.data.message === "Forbidden" || err.response.data.message === "Unauthorized") {
+          setAuth({});
+          setPending(false)
+        }
+      })
+  }, [])
 
     const submit = (e) => {
         e.preventDefault()
@@ -58,9 +83,14 @@ export default function Login() {
     return (
         <>
         <Navbar/>
+        
+        
         <div className="mx-auto bg-login bg-no-repeat bg-cover bg-center bg-fixed">
             <div className="lg:pt-[140px] lg:pb-[99px] md:py-[358px] py-[224px]" >
             <div className="mx-auto  bg-black lg:w-[500px] md:w-[500px] w-[350px] text-white lg:px-[60px] px-[40px] lg:py-10 md:py-10 py-5 lg:text-2xl text-xl">
+            {pending &&
+            <p className="text-center text-green-500 text-Xxl">Loading... Please wait a moment...</p>
+            }
             <form onSubmit={submit} className="">
                 <div className="flex flex-col gap-4">
                 <h2 className="lg:text-4xl md:text-3xl text-2xl text-center">SIGN IN</h2>

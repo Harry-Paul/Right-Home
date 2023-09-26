@@ -198,6 +198,10 @@ export default function Sell() {
                     <input className="border-2" type="text" onChange={(e) => { setRange(e.target.value) }} placeholder="Max distance from location" name="Range" id="" required />
                     <button className="rounded-sm ml-1 bg-black text-white hover:bg-slate-400 hover:text-black px-5" type="submit">Find</button>
                 </form>
+
+                {props.length===0 &&
+                <p className="text-center text-2xl my-10">Loading... Please wait a moment...</p>
+                }
                 <div className="md:my-10 my-5 xl:mx-20 lg:mx-40 md:mx-20 mx-10">
                     <div className="md:my-10 my-5">
                     <h1 className=" md:text-2xl text-xl md:py-5 py-[7px] font-bold">TRENDING</h1>

@@ -1,14 +1,35 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useLayoutEffect} from "react";
 import axios from "../api/axios"
 import {useNavigate, Link} from "react-router-dom";
 import Navbar from "../components/Navbar";
+import useAuth from "../hooks/useAuth";
 
 export default function Signup() {
     const[email,setEmail]=useState('');
     const[password,setPassword]=useState('');
     const[phoneno,setPhoneno]=useState('');
+    const[pending,setPending]=useState(true)
     const role="user";
+    const {setAuth}=useAuth()
     const navigate = useNavigate()
+
+    useLayoutEffect(() => {
+        axios.post('/auth/refresh', { email },
+          {
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+            withCredentials: true
+          })
+          .then(result => {
+            setPending(false)
+          })
+          .catch(err => {
+            if (err.response.data.message === "Forbidden" || err.response.data.message === "Unauthorized") {
+              setAuth({});
+              setPending(false)
+            }
+          })
+      }, [])
+
     const submit = (e) => {
         e.preventDefault()
         axios.post('/signup',{email,password,role,phoneno},
@@ -31,9 +52,14 @@ export default function Signup() {
     return (
         <>
         <Navbar/>
+        
         <div className="mx-auto bg-login bg-no-repeat bg-cover bg-center bg-fixed">
+        
             <div className="lg:pt-[105px] lg:pb-[42px] md:py-[292px] py-[208px]" >
             <div className="mx-auto  bg-black lg:w-[500px] md:w-[500px] w-[350px] text-white lg:px-[60px] px-[40px] lg:py-7 md:py-10 py-5 lg:text-2xl text-xl">
+            {pending && 
+        <p className="text-xl text-green-500 text-center ">Loading... Please wait a moment</p>
+        }
             <form onSubmit={submit} className="">
                 <div className="flex flex-col md:gap-5 gap-2">
                 <h2 className="lg:text-4xl md:text-3xl text-2xl text-center">SIGN UP</h2>

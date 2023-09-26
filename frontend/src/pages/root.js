@@ -297,7 +297,9 @@ export default function Root() {
         </div>
       </div>
 
-
+      {props.length===0 &&
+      <p className="text-center text-2xl my-10">Loading... Please wait a moment...</p>
+      }
 
 
 

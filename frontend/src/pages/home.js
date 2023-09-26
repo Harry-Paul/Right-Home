@@ -188,7 +188,6 @@ export default function Home() {
     <abc>
       <div className="flex flex-col mx-auto bg-root bg-no-repeat bg-cover bg-center lg:h-[500px] md:h-[400px] h-[300px]">
         <Navbar/>
-
         <div className="flex justify-center items-center lg:mt-[225px] md:mt-[185px] mt-[135px] mx-auto rounded-xl z-0">
           <div className=" flex flex-row bg-white rounded-xl mx-auto z-0">
             <select onChange={Option} className="cursor-pointer lg:w-[110px] lg:text-xl md:w-[80px] w-[75px] lg:pl-[30px] md:pl-[20px] pl-[10px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-xl focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-slate-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -208,10 +207,12 @@ export default function Home() {
         </div>
       </div>
 
-
-
-
-
+      
+      
+      {props.length===0 &&
+      <p className="text-center text-2xl my-10">Loading... Please wait a moment...</p>
+      }
+      
 
       <div className="lg:my-[100px] md:my-[60px] my-[50px]">
         <div className="grid xl:grid-cols-3 xl:px-20 lg:px-[90px] md:grid-cols-2 grid-cols-1 xl:gap-4 lg:gap-8 gap-4 px-[35px] ">
