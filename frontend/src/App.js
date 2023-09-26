@@ -33,16 +33,18 @@ export default function App() {
           <Route path="/unauthorized" element={<Unauthorized/>}/>
           <Route exact path="/*" element={<Error/>}/>
           <Route exact path="/error" element={<Error/>}/>
+          <Route exact path="/buymap" element={<BuyMapContainer/>}/>
+            <Route exact path="/property" element={<Property/>}/>
+            <Route exact path="/home" element={<Home/>}/>
+            <Route exact path="/buy" element={<Buy/>}/>
           
 
           <Route element={<RequireAuth/>}>
-            <Route exact path="/home" element={<Home/>}/>
-            <Route exact path="/buy" element={<Buy/>}/>
+            
             <Route exact path="/sell" element={<Sell/>}/>
             <Route exact path="/sellmap" element={<SellMap/>}/>
             <Route exact path="/sellmapown" element={<SellMapOwn/>}/>
-            <Route exact path="/buymap" element={<BuyMapContainer/>}/>
-            <Route exact path="/property" element={<Property/>}/>
+            
             <Route exact path="/favourites" element={<Favourite/>}/>
             <Route exact path="/ownprop" element={<Ownprop/>}/>
             <Route exact path="/interested" element={<Interested/>}/>

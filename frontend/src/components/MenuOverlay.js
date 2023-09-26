@@ -15,13 +15,23 @@ const MenuOverlay = () => {
   const roles = auth?.roles;
   const accessToken = auth?.accessToken;
 
-    const buy = (e, type, status) => {
-        e.preventDefault()
-        navigate('/buy', { state: { type: type, status: status } });
-      }
+  const buy = (e, type, status) => {
+    e.preventDefault()
+    console.log(location)
+    if(location.pathname==="/buy"){
+      navigate('/home', { state: { type: type, status: status } });
+    }
+    else{
+      navigate('/buy', { state: { type: type, status: status } });
+    }
+  }
     
       const sell = () => {
         navigate('/sell');
+      }
+
+      const login=()=>{
+        navigate("/login")
       }
     
       const logout = () => {
@@ -34,6 +44,7 @@ const MenuOverlay = () => {
             withCredentials: true
           }).then(result => {
             setAuth({})
+            navigate("/")
           })
           .catch(err => console.log(err))
       }
@@ -56,7 +67,7 @@ const MenuOverlay = () => {
 
   return (
     <div className="z-10">
-        
+        {auth.email && 
         <div className="flex flex-row bg-black z-20 items-center">
           <div className="mx-auto">
             <div className="">
@@ -101,6 +112,32 @@ const MenuOverlay = () => {
             </div>
 
           </div>
+          }
+          {!auth.email &&
+          <div className="flex flex-row bg-black text-white justify-center py-8">
+            <div className="">
+              <button class="peer w-[75px] mx-3 p-3 text-white border-2">BUY</button>
+              <div class="hidden absolute peer-hover:flex hover:flex
+         w-[200px]
+         flex-col bg-white drop-shadow-lg text-black">
+                <a onClick={(e) => buy(e, "house", "buy")} class="px-5 py-3 hover:bg-gray-200" href="#">Buy house</a>
+                <a onClick={(e) => buy(e, "apartment", "buy")} class="px-5 py-3 hover:bg-gray-200" href="#">Buy apartment</a>
+                <a onClick={(e) => buy(e, "none", "buy")} class="px-5 py-3 hover:bg-gray-200" href="#">All Listings</a>
+              </div>
+            </div>
+            <div className="">
+              <button class="peer w-[75px] p-3 mx-3 text-white border-2">RENT</button>
+              <div class="hidden absolute peer-hover:flex hover:flex
+         w-[200px]
+         flex-col bg-white drop-shadow-lg text-black">
+                <a onClick={(e) => buy(e, "house", "rent")} class="px-5 py-3 hover:bg-gray-200" href="#">Rent house</a>
+                <a onClick={(e) => buy(e, "apartment", "rent")} class="px-5 py-3 hover:bg-gray-200" href="#">Rent apartment</a>
+                <a onClick={(e) => buy(e, "none", "rent")} class="px-5 py-3 hover:bg-gray-200" href="#">All Listings</a>
+              </div>
+            </div>
+            <button className="bg-white w-[75px] text-black p-3 mx-3 hover:bg-slate-300" onClick={login}>LOGIN</button>
+          </div>
+          }
     </div>
   )
 }

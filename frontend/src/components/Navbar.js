@@ -40,6 +40,10 @@ const Navbar = () => {
       const sell = () => {
         navigate('/sell');
       }
+
+      const login=()=>{
+        navigate("/login")
+      }
     
       const logout = () => {
         console.log("sdf")
@@ -51,6 +55,7 @@ const Navbar = () => {
             withCredentials: true
           }).then(result => {
             setAuth({})
+            navigate("/")
           })
           .catch(err => console.log(err))
       }
@@ -131,6 +136,7 @@ const Navbar = () => {
               </div>
             </div>
 
+            {auth.email && 
             <Menu className="ml-auto ">
               <MenuHandler>
                 <img className="h-[40px] mr-0 md:ml-[100px] cursor-pointer" src={accountLogo} />
@@ -143,6 +149,11 @@ const Navbar = () => {
                 <MenuItem className="py-[6px] cursor-pointer hover:bg-slate-200 w-full text-left" onClick={logout}>Logout</MenuItem>
               </MenuList>
             </Menu>
+            }
+
+            {!auth.email &&
+              <buttton className="bg-white text-black my-2 px-2 hover:bg-slate-300 cursor-pointer" onClick={login}>LOGIN</buttton>
+            }
 
           </div>
           

@@ -142,9 +142,12 @@ export default function Property() {
                                 // navigate("/home")
                             })
                             .catch(err => {
-                                if (err.response.data.message === "Forbidden" || err.response.data.message === "Unauthorized") {
+                                if (err.response.data.message === "Forbidden" ) {
                                     setAuth({});
                                     navigate('/home')
+                                }
+                                else if(err.response.data.message === "Unauthorized"){
+                                    navigate("/login")
                                 }
                             })
                     }
@@ -194,9 +197,12 @@ export default function Property() {
                                 // navigate("/home")
                             })
                             .catch(err => {
-                                if (err.response.data.message === "Forbidden" || err.response.data.message === "Unauthorized") {
+                                if (err.response.data.message === "Forbidden" ) {
                                     setAuth({});
                                     navigate('/home')
+                                }
+                                else if(err.response.data.message === "Unauthorized"){
+                                    navigate("/login")
                                 }
                             })
                     }
